@@ -1,1 +1,2 @@
-# Individual-Project
+# Exploring HPC algorithms in SYCL
+ This project would explore how we could make interesting and challenging parallel algorithms, such as transport sweeps, to the latest heterogeneous parallel programming APIs in SYCL. The project would explore how to map the parallelism the mega-stream/mega-sweep benchmark codes to SYCL, and analyse the performance of the code across different HPC-optimised CPU and GPU architectures.
