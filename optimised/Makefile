@@ -18,13 +18,13 @@
 #
 
 
-CC = icc
+CC = gcc-9
 CFLAGS = -std=c11 -O3
 
 FTN = ifort
 FFLAGS = -O3
 
-OMP = -qopenmp
+OMP = -fopenmp
 
 default: mega-stream
 

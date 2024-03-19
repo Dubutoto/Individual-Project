@@ -97,6 +97,7 @@ void kernel(
   const double (* restrict c)[VLEN],
   double (* restrict sum)[Nl][Nk][Nj]
 );
+
 void parse_args(int argc, char *argv[]);
 
 /* Default strides */
