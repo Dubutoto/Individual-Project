@@ -23,6 +23,30 @@
                 "isDefault": true
             },
             "detail": "디버거에서 생성된 작업입니다."
+        },
+        {
+            "label": "all",
+            "command": "mkdir -p build && cmake  -S . -B build && cmake --build build && cmake --build build --target all",
+            "type": "shell",
+            "options": {
+                "cwd": "/home/br-gkim/project/Individual-Project/optimised"
+            }
+        },
+        {
+            "label": "all",
+            "command": "mkdir -p build && cmake  -S . -B build && cmake --build build && cmake --build build --target all",
+            "type": "shell",
+            "options": {
+                "cwd": "/home/br-gkim/project/Individual-Project/optimised"
+            }
+        },
+        {
+            "label": "clean",
+            "command": "mkdir -p build && cmake  -S . -B build && cmake --build build && cmake --build build --target clean",
+            "type": "shell",
+            "options": {
+                "cwd": "/home/br-gkim/project/Individual-Project/optimised"
+            }
         }
     ],
     "version": "2.0.0"

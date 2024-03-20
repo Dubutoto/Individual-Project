@@ -88,6 +88,20 @@ void* aligned_alloc(size_t alignment, size_t size) {
 // Need to change the '__restrict' depends on compiler
 
 void kernel(
+    const int Ng, const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
+    double* __restrict r,
+    const double* __restrict q,
+    double* __restrict x,
+    double* __restrict y,
+    double* __restrict z,
+    const double* __restrict a,
+    const double* __restrict b,
+    const double* __restrict c,
+    double* __restrict sum
+);
+
+/*
+void kernel(
         const int Ng,
         const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
         double (* __restrict r)[Ng][Nl][Nk][Nj][VLEN],
@@ -99,8 +113,8 @@ void kernel(
         const double (* __restrict b)[VLEN],
         const double (* __restrict c)[VLEN],
         double (* __restrict sum)[Nl][Nk][Nj]
-);
-
+); 
+*/
 
 
 
@@ -269,16 +283,7 @@ int main(int argc, char *argv[])
         double tick = omp_get_wtime();
 
 
-        kernel(Ng,Ni,Nj,Nk,Nl,Nm,
-               (double(*)[Ng][Nl][Nk][Nj][VLEN]) r,
-               (const double(*)[Ng][Nl][Nk][Nj][VLEN]) q,
-               (double(*)[Ng][Nk][Nj][VLEN]) x,
-               (double(*)[Ng][Nl][Nj][VLEN]) y,
-               (double(*)[Ng][Nl][Nk][VLEN]) z,
-               (const double(*)[VLEN]) a,
-               (const double(*)[VLEN]) b,
-               (const double(*)[VLEN]) c,
-               (double(*)[Nl][Nk][Nj]) sum);
+        kernel(Ng, Ni, Nj, Nk, Nl, Nm, r, q, x, y, z, a, b, c, sum);
 
         /* Swap the pointers */
         double *tmp = q; q = r; r = tmp;
@@ -292,13 +297,13 @@ int main(int argc, char *argv[])
 
     /* Check the results - total of the sum array */
     double total = 0.0;
-    for (int i = 0; i < Nj * Nk * Nl * Nm; i++) {
+    for (int i = 0; i < Nj * Nk * Nl * Nm; i++) 
         total += sum[i];
-    }
+    std::cout << std::fixed << std::setprecision(6);
     std::cout << "Sum total: " << total << "\n";
 
     /* Print timings */
-    double min = std::numeric_limits<double>::max();
+    double min = DBL_MAX;
     double max = 0.0;
     double avg = 0.0;
     for (int t = 1; t < ntimes; t++) {
@@ -310,10 +315,10 @@ int main(int argc, char *argv[])
 
     std::cout << "\n";
     std::cout << "Bandwidth MB/s  Min time    Max time    Avg time\n";
-    std::cout << std::fixed; // This will ensure that the floating point is not in scientific notation
-    std::cout << std::setprecision(1) << moved/min << " "
-              << std::setprecision(6) << min << " "
-              << max << " " << avg << "\n";
+    std::cout << std::fixed; 
+    std::cout << std::setprecision(1) << moved/min << "        "
+              << std::setprecision(6) << min << "     "
+              << max << "     " << avg << "\n";
     std::cout << "Total time: " << std::setprecision(6) << (end - begin) << "\n";
 
     /* Free memory */
@@ -335,55 +340,55 @@ int main(int argc, char *argv[])
  *************************************************************************/
 #include <immintrin.h>
 void kernel(
-        const int Ng,
-        const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
-        double (* __restrict r)[Ng][Nl][Nk][Nj][VLEN],
-        const double (* __restrict q)[Ng][Nl][Nk][Nj][VLEN],
-        double (* __restrict x)[Ng][Nk][Nj][VLEN],
-        double (* __restrict y)[Ng][Nl][Nj][VLEN],
-        double (* __restrict z)[Ng][Nl][Nk][VLEN],
-        const double (* __restrict a)[VLEN],
-        const double (* __restrict b)[VLEN],
-        const double (* __restrict c)[VLEN],
-        double (* __restrict sum)[Nl][Nk][Nj]
-        )
-        {
+    const int Ng, 
+    const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
+    double* __restrict r,
+    const double* __restrict q,
+    double* __restrict x,
+    double* __restrict y,
+    double* __restrict z,
+    const double* __restrict a,
+    const double* __restrict b,
+    const double* __restrict c,
+    double* __restrict sum
+) {
     #pragma omp parallel for
-        for (int m = 0; m < Nm; m++) {
-            for (int g = 0; g < Ng; g++) {
-                for (int l = 0; l < Nl; l++) {
-                    for (int k = 0; k < Nk; k++) {
-                        for (int j = 0; j < Nj; j++) {
+    for (int m = 0; m < Nm; m++) {
+        for (int g = 0; g < Ng; g++) {
+            for (int l = 0; l < Nl; l++) {
+                for (int k = 0; k < Nk; k++) {
+                    for (int j = 0; j < Nj; j++) {
                         double total = 0.0;
-                        _mm_prefetch((const char *) (&q[m][g][l][k][j][0] + 32 * VLEN), _MM_HINT_T1);
+                        _mm_prefetch((const char *)&q[((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN] + 32, _MM_HINT_T1);
                         #pragma vector nontemporal(r)
                         #pragma omp simd reduction(+:total) aligned(a, b, c, x, y, z, r, q:64)
                         for (int v = 0; v < VLEN; v++) {
-                            /* Set r */
-                            r[m][g][l][k][j][v] =
-                                    q[m][g][l][k][j][v] +
-                                    a[g][v] * x[m][g][k][j][v] +
-                                    b[g][v] * y[m][g][l][j][v] +
-                                    c[g][v] * z[m][g][l][k][v];
+                            // Set r
+                            r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] =
+                                q[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] +
+                                a[g * VLEN + v] * x[(((m * Ng + g) * Nk + k) * Nj + j) * VLEN + v] +
+                                b[g * VLEN + v] * y[(((m * Ng + g) * Nl + l) * Nj + j) * VLEN + v] +
+                                c[g * VLEN + v] * z[(((m * Ng + g) * Nl + l) * Nk + k) * VLEN + v];
 
-                            /* Update x, y and z */
-                            x[m][g][k][j][v] = 0.2 * r[m][g][l][k][j][v] - x[m][g][k][j][v];
-                            y[m][g][l][j][v] = 0.2 * r[m][g][l][k][j][v] - y[m][g][l][j][v];
-                            z[m][g][l][k][v] = 0.2 * r[m][g][l][k][j][v] - z[m][g][l][k][v];
+                            // Update x, y and z
+                            x[(((m * Ng + g) * Nk + k) * Nj + j) * VLEN + v] = 0.2 * r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] - x[(((m * Ng + g) * Nk + k) * Nj + j) * VLEN + v];
+                            y[(((m * Ng + g) * Nl + l) * Nj + j) * VLEN + v] = 0.2 * r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] - y[(((m * Ng + g) * Nl + l) * Nj + j) * VLEN + v];
+                            z[(((m * Ng + g) * Nl + l) * Nk + k) * VLEN + v] = 0.2 * r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] - z[(((m * Ng + g) * Nl + l) * Nk + k) * VLEN + v];
 
-                            /* Reduce over Ni */
-                            total += r[m][g][l][k][j][v];
+                            // Reduce over Ni
+                            total += r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v];
+                        }
 
-                        } /* VLEN */
+                        // Update sum
+                        sum[((m * Nl + l) * Nk + k) * Nj + j] += total;
+                    }
+                } // Nk 
+            } // Nl 
+        } // Ng 
+    } // Nm 
+} 
 
-                        sum[m][l][k][j] += total;
 
-                    } /* Nj */
-                } /* Nk */
-            } /* Nl */
-        } /* Ng */
-    } /* Nm */
-}
 
 void parse_args(int argc, char *argv[])
 {
