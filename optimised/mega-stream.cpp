@@ -101,26 +101,6 @@ void kernel(
     double* __restrict sum
 );
 
-/*
-void kernel(
-        const int Ng,
-        const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
-        double (* __restrict r)[Ng][Nl][Nk][Nj][VLEN],
-        const double (* __restrict q)[Ng][Nl][Nk][Nj][VLEN],
-        double (* __restrict x)[Ng][Nk][Nj][VLEN],
-        double (* __restrict y)[Ng][Nl][Nj][VLEN],
-        double (* __restrict z)[Ng][Nl][Nk][VLEN],
-        const double (* __restrict a)[VLEN],
-        const double (* __restrict b)[VLEN],
-        const double (* __restrict c)[VLEN],
-        double (* __restrict sum)[Nl][Nk][Nj]
-); 
-*/
-
-
-
-
-
 void parse_args(int argc, char *argv[]);
 
 // Default strides
