@@ -19,7 +19,7 @@
 
 
 CC = icc
-CFLAGS = -std=c11 -O3
+CFLAGS = -std=c++17 -O3
 
 FTN = ifort
 FFLAGS = -O3

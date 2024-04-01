@@ -1,0 +1,49 @@
+{
+    "configurations": [
+        {
+            "comments": [
+                "Full launch.json configuration details can be found here:",
+                "https://code.visualstudio.com/docs/cpp/launch-json-reference"
+            ],
+            "name": "(gdb-oneapi) mega-stream Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "C/C++: clang 활성 파일 빌드",
+            "postDebugTask": "",
+            "program": "/home/br-gkim/project/Individual-Project/optimised/mega-stream",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "ZET_ENABLE_PROGRAM_DEBUGGING",
+                    "value": "1"
+                },
+                {
+                    "name": "IGC_EnableGTLocationDebugging",
+                    "value": "1"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb-oneapi",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Disable target async",
+                    "text": "set target-async off",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Do not display function arguments when printing a stack frame",
+                    "text": "set print frame-arguments none",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

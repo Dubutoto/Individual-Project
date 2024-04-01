@@ -34,6 +34,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <cassert>
+#include <chrono>
 
 
 //Q
@@ -131,7 +132,7 @@ int Nm = OUTER;
 int Ng;
 
 /* Number of iterations to run benchmark */
-int ntimes = 100;
+int ntimes = 1000;
 
 
 int main(int argc, char *argv[])
@@ -277,10 +278,10 @@ int main(int argc, char *argv[])
         }
     } /* End of parallel region */
 
-    double begin = omp_get_wtime();
+    auto begin = std::chrono::high_resolution_clock::now();
     /* Run the kernel multiple times */
     for (int t = 0; t < ntimes; t++) {
-        double tick = omp_get_wtime();
+        auto tick = std::chrono::high_resolution_clock::now();
 
 
         kernel(Ng, Ni, Nj, Nk, Nl, Nm, r, q, x, y, z, a, b, c, sum);
@@ -288,12 +289,12 @@ int main(int argc, char *argv[])
         /* Swap the pointers */
         double *tmp = q; q = r; r = tmp;
 
-        double tock = omp_get_wtime();
-        timings[t] = tock-tick;
+        auto tock = std::chrono::high_resolution_clock::now();
+        timings[t] = std::chrono::duration<double>(tock - tick).count();
 
     }
 
-    double end = omp_get_wtime();
+    auto end = std::chrono::high_resolution_clock::now();
 
     /* Check the results - total of the sum array */
     double total = 0.0;
@@ -319,7 +320,7 @@ int main(int argc, char *argv[])
     std::cout << std::setprecision(1) << moved/min << "        "
               << std::setprecision(6) << min << "     "
               << max << "     " << avg << "\n";
-    std::cout << "Total time: " << std::setprecision(6) << (end - begin) << "\n";
+    std::cout << "Total time: " << std::setprecision(6) << (std::chrono::duration<double>(end - begin).count()) << "\n";
 
     /* Free memory */
     free(q);
