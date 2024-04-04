@@ -18,8 +18,8 @@
 #
 
 
-CC = icc
-CFLAGS = -std=c++17 -O3
+CC = icpx
+CFLAGS = -std=c++17 -O3 -fsycl
 
 FTN = ifort
 FFLAGS = -O3

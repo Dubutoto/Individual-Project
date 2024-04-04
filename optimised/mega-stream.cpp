@@ -35,6 +35,7 @@
 #include <cstring>
 #include <cassert>
 #include <chrono>
+#include <CL/sycl.hpp>
 
 
 //Q
