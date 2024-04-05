@@ -37,26 +37,14 @@
 #include <chrono>
 #include <CL/sycl.hpp>
 
-// Index functions for SYCL
-inline size_t IDX2(size_t i, size_t j, size_t ni) {
-    return i + (ni) * (j);
-}
 
-inline size_t IDX3(size_t i, size_t j, size_t k, size_t ni, size_t nj) {
-    return i + (ni)*IDX2(j, k, nj);
-}
+//Q
+#define IDX2(i,j,ni) ((i)+(ni)*(j))
+#define IDX3(i,j,k,ni,nj) ((i)+(ni)*IDX2((j),(k),(nj)))
+#define IDX4(i,j,k,l,ni,nj,nk) ((i)+(ni)*IDX3((j),(k),(l),(nj),(nk)))
+#define IDX5(i,j,k,l,m,ni,nj,nk,nl) ((i)+(ni)*IDX4((j),(k),(l),(m),(nj),(nk),(nl)))
+#define IDX6(i,j,k,l,m,n,ni,nj,nk,nl,nm) ((i)+(ni)*IDX5((j),(k),(l),(m),(n),(nj),(nk),(nl),(nm)))
 
-inline size_t IDX4(size_t i, size_t j, size_t k, size_t l, size_t ni, size_t nj, size_t nk) {
-    return i + (ni)*IDX3(j, k, l, nj, nk);
-}
-
-inline size_t IDX5(size_t i, size_t j, size_t k, size_t l, size_t m, size_t ni, size_t nj, size_t nk, size_t nl) {
-    return i + (ni)*IDX4(j, k, l, m, nj, nk, nl);
-}
-
-inline size_t IDX6(size_t i, size_t j, size_t k, size_t l, size_t m, size_t n, size_t ni, size_t nj, size_t nk, size_t nl, size_t nm) {
-    return i + (ni)*IDX5(j, k, l, m, n, nj, nk, nl, nm);
-}
 /*
   Arrays are defined in terms of 3 sizes: inner, middle and outer.
   The large arrays are of size inner*middle*middle*middle*outer.
@@ -181,21 +169,6 @@ int main(int argc, char *argv[])
 
     double *sum = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*Nj*Nk*Nl*Nm));
 
-    sycl::queue queue;
-    // q, r, x, y, z, a, b, c, sum에 대한 SYCL 버퍼 생성
-    sycl::buffer<double> buf_q(VLEN * Nj * Nk * Nl * Nm * Ng);
-    sycl::buffer<double> buf_r(VLEN * Nj * Nk * Nl * Nm * Ng);
-
-    sycl::buffer<double> buf_x(VLEN * Nj * Nk * Nm * Ng);
-    sycl::buffer<double> buf_y(VLEN * Nj * Nl * Nm * Ng);
-    sycl::buffer<double> buf_z(VLEN * Nk * Nl * Nm * Ng);
-
-    sycl::buffer<double> buf_a(VLEN * Ng);
-    sycl::buffer<double> buf_b(VLEN * Ng);
-    sycl::buffer<double> buf_c(VLEN * Ng);
-
-    sycl::buffer<double> buf_sum(Nj * Nk * Nl * Nm);
-
     /* Initalise the data */
     #pragma omp parallel
     {
@@ -206,7 +179,7 @@ int main(int argc, char *argv[])
                 for (int l = 0; l < Nl; l++) {
                     for (int k = 0; k < Nk; k++) {
                         for (int j = 0; j < Nj; j++) {
-    #pragma omp simd...... ㅜ
+    #pragma omp simd
                             for (int v = 0; v < VLEN; v++) {
                                 q[IDX6(v,j,k,l,g,m,VLEN,Nj,Nk,Nl,Ng)] = Q_START;
                                 r[IDX6(v,j,k,l,g,m,VLEN,Nj,Nk,Nl,Ng)] = R_START;
