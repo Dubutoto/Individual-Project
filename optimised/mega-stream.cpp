@@ -167,7 +167,6 @@ int main(int argc, char *argv[])
     std::cout << "Running " << ntimes << " times\n\n";
 
     double timings[ntimes];
-
     double *q = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double) * VLEN * Nj * Nk * Nl * Nm * Ng));
     double *r = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double) * VLEN * Nj * Nk * Nl * Nm * Ng));
 
@@ -181,7 +180,6 @@ int main(int argc, char *argv[])
 
     double *sum = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*Nj*Nk*Nl*Nm));
 
-    sycl::queue queue;
     // q, r, x, y, z, a, b, c, sum에 대한 SYCL 버퍼 생성
     sycl::buffer<double> buf_q(VLEN * Nj * Nk * Nl * Nm * Ng);
     sycl::buffer<double> buf_r(VLEN * Nj * Nk * Nl * Nm * Ng);
@@ -196,95 +194,133 @@ int main(int argc, char *argv[])
 
     sycl::buffer<double> buf_sum(Nj * Nk * Nl * Nm);
 
-    /* Initalise the data */
-    #pragma omp parallel
-    {
-        /* q and r */
-    #pragma omp for
-        for (int m = 0; m < Nm; m++) {
-            for (int g = 0; g < Ng; g++) {
-                for (int l = 0; l < Nl; l++) {
-                    for (int k = 0; k < Nk; k++) {
-                        for (int j = 0; j < Nj; j++) {
-    #pragma omp simd...... ㅜ
-                            for (int v = 0; v < VLEN; v++) {
-                                q[IDX6(v,j,k,l,g,m,VLEN,Nj,Nk,Nl,Ng)] = Q_START;
-                                r[IDX6(v,j,k,l,g,m,VLEN,Nj,Nk,Nl,Ng)] = R_START;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    sycl::queue queue;
 
-        /* x */
-    #pragma omp for
-        for (int m = 0; m < Nm; m++) {
-            for (int g = 0; g < Ng; g++) {
-                for (int k = 0; k < Nk; k++) {
-                    for (int j = 0; j < Nj; j++) {
-    #pragma omp simd
-                        for (int v = 0; v < VLEN; v++) {
-                            x[IDX5(v,j,k,g,m,VLEN,Nj,Nk,Ng)] = X_START;
-                        }
-                    }
-                }
-            }
+    queue.submit([&](sycl::handler& handler) {
+    auto acc_q = buf_q.get_access<sycl::access::mode::write>(handler);
+    auto acc_r = buf_r.get_access<sycl::access::mode::write>(handler);
+    
+    // 글로벌 변수를 상수로 캡처
+    const size_t local_VLEN = VLEN;
+    const size_t local_Nj = Nj;
+    const size_t local_Nk = Nk;
+    const size_t local_Nl = Nl;
+    const size_t local_Ng = Ng;
+    const size_t local_Nm = Nm;
+    
+    handler.parallel_for<class init_qr>(
+        sycl::range<3>{static_cast<size_t>(local_VLEN * local_Nj * local_Nk), static_cast<size_t>(local_Nl), static_cast<size_t>(local_Ng * local_Nm)},
+        [=](sycl::id<3> idx) {
+            // 이전과 동일한 계산, 하지만 로컬 상수 사용
+            size_t flat = idx.get(0);
+            size_t l = idx.get(1);
+            size_t combined = idx.get(2);
+            size_t v = flat % local_VLEN;
+            size_t j = (flat / local_VLEN) % local_Nj;
+            size_t k = (flat / (local_VLEN * local_Nj)) % local_Nk;
+            size_t g = combined % local_Ng;
+            size_t m = combined / local_Ng;
+            acc_q[IDX6(v,j,k,l,g,m,local_VLEN,local_Nj,local_Nk,local_Nl,local_Ng)] = Q_START;
+            acc_r[IDX6(v,j,k,l,g,m,local_VLEN,local_Nj,local_Nk,local_Nl,local_Ng)] = R_START;
         }
+    );
+});
 
-        /* y */
-    #pragma omp for
-        for (int m = 0; m < Nm; m++) {
-            for (int g = 0; g < Ng; g++) {
-                for (int l = 0; l < Nl; l++) {
-                    for (int j = 0; j < Nj; j++) {
-    #pragma omp simd
-                        for (int v = 0; v < VLEN; v++) {
-                            y[IDX5(v,j,l,g,m,VLEN,Nj,Nl,Ng)] = Y_START;
-                        }
-                    }
-                }
-            }
-        }
+// acc_x 초기화 수정
+queue.submit([&](sycl::handler& handler) {
+    auto acc_x = buf_x.get_access<sycl::access::mode::write>(handler);
+    const size_t local_VLEN = VLEN;
+    const size_t local_Nj = Nj;
+    const size_t local_Nk = Nk;
+    const size_t local_Ng = Ng;
+    const size_t local_Nm = Nm;
 
-        /* z */
-    #pragma omp for
-        for (int m = 0; m < Nm; m++) {
-            for (int g = 0; g < Ng; g++) {
-                for (int l = 0; l < Nl; l++) {
-                    for (int k = 0; k < Nk; k++) {
-    #pragma omp simd
-                        for (int v = 0; v < VLEN; v++) {
-                            z[IDX5(v,k,l,g,m,VLEN,Nk,Nl,Ng)] = Z_START;
-                        }
-                    }
-                }
-            }
-        }
+    handler.parallel_for<class init_x>(sycl::range<3>(local_VLEN * local_Nj * local_Nk, local_Ng, local_Nm), [=](sycl::id<3> idx) {
+        size_t flat = idx.get(0);
+        size_t g = idx.get(1);
+        size_t m = idx.get(2);
+        size_t v = flat % local_VLEN;
+        size_t j = (flat / local_VLEN) % local_Nj;
+        size_t k = (flat / (local_VLEN * local_Nj)) % local_Nk;
+        acc_x[IDX5(v,j,k,g,m,local_VLEN,local_Nj,local_Nk,local_Ng)] = X_START;
+    });
+});
 
-        /* a, b, and c */
-    #pragma omp for
-        for (int g = 0; g < Ng; g++) {
-    #pragma omp simd
-            for (int v = 0; v < VLEN; v++) {
-                a[IDX2(v,g,VLEN)] = A_START;
-                b[IDX2(v,g,VLEN)] = B_START;
-                c[IDX2(v,g,VLEN)] = C_START;
-            }
-        }
+// acc_y 초기화 수정
+queue.submit([&](sycl::handler& handler) {
+    auto acc_y = buf_y.get_access<sycl::access::mode::write>(handler);
+    const size_t local_VLEN = VLEN;
+    const size_t local_Nj = Nj;
+    const size_t local_Nl = Nl;
+    const size_t local_Ng = Ng;
+    const size_t local_Nm = Nm;
 
-        /* sum */
-    #pragma omp for
-        for (int m = 0; m < Nm; m++) {
-            for (int l = 0; l < Nl; l++) {
-                for (int k = 0; k < Nk; k++) {
-                    for (int j = 0; j < Nj; j++) {
-                        sum[IDX4(j,k,l,m,Nj,Nk,Nl)] = 0.0;
-                    }
-                }
-            }
-        }
-    } /* End of parallel region */
+    handler.parallel_for<class init_y>(sycl::range<3>(local_VLEN * local_Nj * local_Nl, local_Ng, local_Nm), [=](sycl::id<3> idx) {
+        size_t flat = idx.get(0);
+        size_t g = idx.get(1);
+        size_t m = idx.get(2);
+        size_t v = flat % local_VLEN;
+        size_t j = (flat / local_VLEN) % local_Nj;
+        size_t l = (flat / (local_VLEN * local_Nj)) % local_Nl;
+        acc_y[IDX5(v,j,l,g,m,local_VLEN,local_Nj,local_Nl,local_Ng)] = Y_START;
+    });
+});
+
+// acc_z 초기화 수정
+queue.submit([&](sycl::handler& handler) {
+    auto acc_z = buf_z.get_access<sycl::access::mode::write>(handler);
+    const size_t local_VLEN = VLEN;
+    const size_t local_Nk = Nk;
+    const size_t local_Nl = Nl;
+    const size_t local_Ng = Ng;
+    const size_t local_Nm = Nm;
+
+    handler.parallel_for<class init_z>(sycl::range<3>(local_VLEN * local_Nk * local_Nl, local_Ng, local_Nm), [=](sycl::id<3> idx) {
+        size_t flat = idx.get(0);
+        size_t g = idx.get(1);
+        size_t m = idx.get(2);
+        size_t v = flat % local_VLEN;
+        size_t k = (flat / local_VLEN) % local_Nk;
+        size_t l = (flat / (local_VLEN * local_Nk)) % local_Nl;
+        acc_z[IDX5(v,k,l,g,m,local_VLEN,local_Nk,local_Nl,local_Ng)] = Z_START;
+    });
+});
+
+// acc_a, acc_b, acc_c 초기화 수정
+queue.submit([&](sycl::handler& handler) {
+    auto acc_a = buf_a.get_access<sycl::access::mode::write>(handler);
+    auto acc_b = buf_b.get_access<sycl::access::mode::write>(handler);
+    auto acc_c = buf_c.get_access<sycl::access::mode::write>(handler);
+    const size_t local_VLEN = VLEN;
+    const size_t local_Ng = Ng;
+
+    handler.parallel_for<class init_abc>(sycl::range<2>(local_VLEN, local_Ng), [=](sycl::id<2> idx) {
+        size_t v = idx.get(0);
+        size_t g = idx.get(1);
+        acc_a[IDX2(v,g,local_VLEN)] = A_START;
+        acc_b[IDX2(v,g,local_VLEN)] = B_START;
+        acc_c[IDX2(v,g,local_VLEN)] = C_START;
+    });
+});
+
+// acc_sum 초기화 수정
+queue.submit([&](sycl::handler& handler) {
+    auto acc_sum = buf_sum.get_access<sycl::access::mode::write>(handler);
+    const size_t local_Nj = Nj;
+    const size_t local_Nk = Nk;
+    const size_t local_Nl = Nl;
+    const size_t local_Nm = Nm;
+
+    handler.parallel_for<class init_sum>(sycl::range<3>(local_Nj * local_Nk, local_Nl, local_Nm), [=](sycl::id<3> idx) {
+        size_t flat = idx.get(0);
+        size_t l = idx.get(1);
+        size_t m = idx.get(2);
+        size_t j = flat % local_Nj;
+        size_t k = flat / local_Nj;
+        acc_sum[IDX4(j,k,l,m,local_Nj,local_Nk,local_Nl)] = 0.0;
+    });
+});
+
 
     auto begin = std::chrono::high_resolution_clock::now();
     /* Run the kernel multiple times */
@@ -330,16 +366,7 @@ int main(int argc, char *argv[])
               << max << "     " << avg << "\n";
     std::cout << "Total time: " << std::setprecision(6) << (std::chrono::duration<double>(end - begin).count()) << "\n";
 
-    /* Free memory */
-    free(q);
-    free(r);
-    free(x);
-    free(y);
-    free(z);
-    free(a);
-    free(b);
-    free(c);
-    free(sum);
+    queue.wait();
 
     return EXIT_SUCCESS;
 }
@@ -397,7 +424,73 @@ void kernel(
     } // Nm 
 } 
 
+/*
+void kernel_sycl(
+    const int Ng, 
+    const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
+    double* r,
+    const double* q,
+    double* x,
+    double* y,
+    double* z,
+    const double* a,
+    const double* b,
+    const double* c,
+    double* sum
+) {
+    sycl::queue queue;
+    // 데이터를 위한 버퍼 생성
+    sycl::buffer<double> r_buf(r, Nm * Ng * Nl * Nk * Nj * VLEN);
+    sycl::buffer<double> q_buf(q, Nm * Ng * Nl * Nk * Nj * VLEN);
+    sycl::buffer<double> x_buf(x, Nm * Ng * Nk * Nj * VLEN);
+    sycl::buffer<double> y_buf(y, Nm * Ng * Nl * Nj * VLEN);
+    sycl::buffer<double> z_buf(z, Nm * Ng * Nl * Nk * VLEN);
+    sycl::buffer<double> a_buf(a, Ng * VLEN);
+    sycl::buffer<double> b_buf(b, Ng * VLEN);
+    sycl::buffer<double> c_buf(c, Ng * VLEN);
+    sycl::buffer<double> sum_buf(sum, Nm * Nl * Nk * Nj);
 
+    queue.submit([&](sycl::handler& cgh) {
+        auto r_acc = r_buf.get_access<sycl::access::mode::read_write>(cgh);
+        auto q_acc = q_buf.get_access<sycl::access::mode::read>(cgh);
+        auto x_acc = x_buf.get_access<sycl::access::mode::read_write>(cgh);
+        auto y_acc = y_buf.get_access<sycl::access::mode::read_write>(cgh);
+        auto z_acc = z_buf.get_access<sycl::access::mode::read_write>(cgh);
+        auto a_acc = a_buf.get_access<sycl::access::mode::read>(cgh);
+        auto b_acc = b_buf.get_access<sycl::access::mode::read>(cgh);
+        auto c_acc = c_buf.get_access<sycl::access::mode::read>(cgh);
+        auto sum_acc = sum_buf.get_access<sycl::access::mode::read_write>(cgh);
+
+        // 작업을 장치에 디스패치
+        cgh.parallel_for(sycl::range<5>{Nm, Ng, Nl, Nk, Nj}, [=](sycl::id<5> idx) {
+            int m = idx[0];
+            int g = idx[1];
+            int l = idx[2];
+            int k = idx[3];
+            int j = idx[4];
+            double total = 0.0;
+
+            for (int v = 0; v < VLEN; v++) {
+                int index = (((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v;
+                r_acc[index] = q_acc[index] +
+                               a_acc[g * VLEN + v] * x_acc[((m * Ng + g) * Nk + k) * Nj + j * VLEN + v] +
+                               b_acc[g * VLEN + v] * y_acc[((m * Ng + g) * Nl + l) * Nj + j * VLEN + v] +
+                               c_acc[g * VLEN + v] * z_acc[((m * Ng + g) * Nl + l) * Nk + k * VLEN + v];
+
+                x_acc[((m * Ng + g) * Nk + k) * Nj + j * VLEN + v] = 0.2 * r_acc[index] - x_acc[((m * Ng + g) * Nk + k) * Nj + j * VLEN + v];
+                y_acc[((m * Ng + g) * Nl + l) * Nj + j * VLEN + v] = 0.2 * r_acc[index] - y_acc[((m * Ng + g) * Nl + l) * Nj + j * VLEN + v];
+                z_acc[((m * Ng + g) * Nl + l) * Nk + k * VLEN + v] = 0.2 * r_acc[index] - z_acc[((m * Ng + g) * Nl + l) * Nk + k * VLEN + v];
+
+                total += r_acc[index];
+            }
+
+            sum_acc[((m * Nl + l) * Nk + k) * Nj + j] += total;
+        });
+    });
+
+    queue.wait_and_throw(); // 연산이 완료될 때까지 대기
+}
+*/
 
 void parse_args(int argc, char *argv[])
 {
