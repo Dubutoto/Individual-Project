@@ -114,6 +114,20 @@ void kernel(
     double* __restrict sum
 );
 
+void kernel_sycl(
+    sycl::queue* queue,
+    const int Ng, const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
+    sycl::buffer<double>* buf_r,
+    sycl::buffer<double>* buf_q,
+    sycl::buffer<double>* buf_x,
+    sycl::buffer<double>* buf_y,
+    sycl::buffer<double>* buf_z,
+    sycl::buffer<double>* buf_a,
+    sycl::buffer<double>* buf_b,
+    sycl::buffer<double>* buf_c,
+    sycl::buffer<double>* buf_sum
+);
+
 void parse_args(int argc, char *argv[]);
 
 // Default strides
@@ -126,6 +140,7 @@ int Ng;
 
 /* Number of iterations to run benchmark */
 int ntimes = 1000;
+
 
 
 int main(int argc, char *argv[])
@@ -142,31 +157,33 @@ int main(int argc, char *argv[])
               << " elements\t" << (Ni * Nj * Nj * Nj * Nm * sizeof(double) * 1.0E-6) << " MB\n";
 
     const double footprint = (double)sizeof(double) * 1.0E-6 * (
-            2.0 * Ni * Nj * Nk * Nl * Nm +  // r, q
-            Ni * Nj * Nk * Nm +             // x
-            Ni * Nj * Nl * Nm +             // y
-            Ni * Nk * Nl * Nm +             // z
-            3.0 * Ni +                      // a, b, c
-            Nj * Nk * Nl * Nm               // sum
+            2.0*Ni*Nj*Nk*Nl*Nm +  // r, q
+            Ni*Nj*Nk*Nm +         // x
+            Ni*Nj*Nl*Nm +         // y
+            Ni*Nk*Nl*Nm +         // z
+            3.0*Ni +              // a, b, c
+            Nj*Nk*Nl*Nm           // sum
     );
     std::cout << "Memory footprint: " << footprint << " MB\n";
 
     /* Total memory moved (in the best case) - the arrays plus an extra sum as update is += */
     const double moved = (double)sizeof(double) * 1.0E-6 * (
-            Ni * Nj * Nk * Nl * Nm  + // read q
-            Ni * Nj * Nk * Nl * Nm  + // write r
-            Ni + Ni + Ni            + // read a, b and c
-            2.0 * Ni * Nj * Nk * Nm + // read and write x
-            2.0 * Ni * Nj * Nl * Nm + // read and write y
-            2.0 * Ni * Nk * Nl * Nm + // read and write z
-            2.0 * Nj * Nk * Nl * Nm   // read and write sum
+        Ni*Nj*Nk*Nl*Nm  + // read q
+        Ni*Nj*Nk*Nl*Nm  + // write r
+        Ni+Ni+Ni            + // read a, b and c
+        2.0*Ni*Nj*Nk*Nm + // read and write x
+        2.0*Ni*Nj*Nl*Nm + // read and write y
+        2.0*Ni*Nk*Nl*Nm + // read and write z
+        2.0*Nj*Nk*Nl*Nm   // read and write sum
     );
+
     /* Split inner-most dimension into VLEN-sized chunks */
     Ng = ((Ni + (VLEN-1)) & ~(VLEN-1)) / VLEN;
     std::cout << "Inner dimension split into " << Ng << " chunks of size " << VLEN << "\n";
     std::cout << "Running " << ntimes << " times\n\n";
 
     double timings[ntimes];
+
     double *q = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double) * VLEN * Nj * Nk * Nl * Nm * Ng));
     double *r = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double) * VLEN * Nj * Nk * Nl * Nm * Ng));
 
@@ -201,25 +218,25 @@ int main(int argc, char *argv[])
     auto acc_r = buf_r.get_access<sycl::access::mode::write>(handler);
     
     // 글로벌 변수를 상수로 캡처
-    const size_t local_VLEN = VLEN;
-    const size_t local_Nj = Nj;
-    const size_t local_Nk = Nk;
-    const size_t local_Nl = Nl;
-    const size_t local_Ng = Ng;
-    const size_t local_Nm = Nm;
+    const int local_VLEN = VLEN;
+    const int local_Nj = Nj;
+    const int local_Nk = Nk;
+    const int local_Nl = Nl;
+    const int local_Ng = Ng;
+    const int local_Nm = Nm;
     
     handler.parallel_for<class init_qr>(
         sycl::range<3>{static_cast<size_t>(local_VLEN * local_Nj * local_Nk), static_cast<size_t>(local_Nl), static_cast<size_t>(local_Ng * local_Nm)},
         [=](sycl::id<3> idx) {
             // 이전과 동일한 계산, 하지만 로컬 상수 사용
-            size_t flat = idx.get(0);
-            size_t l = idx.get(1);
-            size_t combined = idx.get(2);
-            size_t v = flat % local_VLEN;
-            size_t j = (flat / local_VLEN) % local_Nj;
-            size_t k = (flat / (local_VLEN * local_Nj)) % local_Nk;
-            size_t g = combined % local_Ng;
-            size_t m = combined / local_Ng;
+            int flat = idx.get(0);
+            int l = idx.get(1);
+            int combined = idx.get(2);
+            int v = flat % local_VLEN;
+            int j = (flat / local_VLEN) % local_Nj;
+            int k = (flat / (local_VLEN * local_Nj)) % local_Nk;
+            int g = combined % local_Ng;
+            int m = combined / local_Ng;
             acc_q[IDX6(v,j,k,l,g,m,local_VLEN,local_Nj,local_Nk,local_Nl,local_Ng)] = Q_START;
             acc_r[IDX6(v,j,k,l,g,m,local_VLEN,local_Nj,local_Nk,local_Nl,local_Ng)] = R_START;
         }
@@ -229,19 +246,19 @@ int main(int argc, char *argv[])
 // acc_x 초기화 수정
 queue.submit([&](sycl::handler& handler) {
     auto acc_x = buf_x.get_access<sycl::access::mode::write>(handler);
-    const size_t local_VLEN = VLEN;
-    const size_t local_Nj = Nj;
-    const size_t local_Nk = Nk;
-    const size_t local_Ng = Ng;
-    const size_t local_Nm = Nm;
+    const int local_VLEN = VLEN;
+    const int local_Nj = Nj;
+    const int local_Nk = Nk;
+    const int local_Ng = Ng;
+    const int local_Nm = Nm;
 
     handler.parallel_for<class init_x>(sycl::range<3>(local_VLEN * local_Nj * local_Nk, local_Ng, local_Nm), [=](sycl::id<3> idx) {
-        size_t flat = idx.get(0);
-        size_t g = idx.get(1);
-        size_t m = idx.get(2);
-        size_t v = flat % local_VLEN;
-        size_t j = (flat / local_VLEN) % local_Nj;
-        size_t k = (flat / (local_VLEN * local_Nj)) % local_Nk;
+        int flat = idx.get(0);
+        int g = idx.get(1);
+        int m = idx.get(2);
+        int v = flat % local_VLEN;
+        int j = (flat / local_VLEN) % local_Nj;
+        int k = (flat / (local_VLEN * local_Nj)) % local_Nk;
         acc_x[IDX5(v,j,k,g,m,local_VLEN,local_Nj,local_Nk,local_Ng)] = X_START;
     });
 });
@@ -249,19 +266,19 @@ queue.submit([&](sycl::handler& handler) {
 // acc_y 초기화 수정
 queue.submit([&](sycl::handler& handler) {
     auto acc_y = buf_y.get_access<sycl::access::mode::write>(handler);
-    const size_t local_VLEN = VLEN;
-    const size_t local_Nj = Nj;
-    const size_t local_Nl = Nl;
-    const size_t local_Ng = Ng;
-    const size_t local_Nm = Nm;
+    const int local_VLEN = VLEN;
+    const int local_Nj = Nj;
+    const int local_Nl = Nl;
+    const int local_Ng = Ng;
+    const int local_Nm = Nm;
 
     handler.parallel_for<class init_y>(sycl::range<3>(local_VLEN * local_Nj * local_Nl, local_Ng, local_Nm), [=](sycl::id<3> idx) {
-        size_t flat = idx.get(0);
-        size_t g = idx.get(1);
-        size_t m = idx.get(2);
-        size_t v = flat % local_VLEN;
-        size_t j = (flat / local_VLEN) % local_Nj;
-        size_t l = (flat / (local_VLEN * local_Nj)) % local_Nl;
+        int flat = idx.get(0);
+        int g = idx.get(1);
+        int m = idx.get(2);
+        int v = flat % local_VLEN;
+        int j = (flat / local_VLEN) % local_Nj;
+        int l = (flat / (local_VLEN * local_Nj)) % local_Nl;
         acc_y[IDX5(v,j,l,g,m,local_VLEN,local_Nj,local_Nl,local_Ng)] = Y_START;
     });
 });
@@ -269,19 +286,19 @@ queue.submit([&](sycl::handler& handler) {
 // acc_z 초기화 수정
 queue.submit([&](sycl::handler& handler) {
     auto acc_z = buf_z.get_access<sycl::access::mode::write>(handler);
-    const size_t local_VLEN = VLEN;
-    const size_t local_Nk = Nk;
-    const size_t local_Nl = Nl;
-    const size_t local_Ng = Ng;
-    const size_t local_Nm = Nm;
+    const int local_VLEN = VLEN;
+    const int local_Nk = Nk;
+    const int local_Nl = Nl;
+    const int local_Ng = Ng;
+    const int local_Nm = Nm;
 
     handler.parallel_for<class init_z>(sycl::range<3>(local_VLEN * local_Nk * local_Nl, local_Ng, local_Nm), [=](sycl::id<3> idx) {
-        size_t flat = idx.get(0);
-        size_t g = idx.get(1);
-        size_t m = idx.get(2);
-        size_t v = flat % local_VLEN;
-        size_t k = (flat / local_VLEN) % local_Nk;
-        size_t l = (flat / (local_VLEN * local_Nk)) % local_Nl;
+        int flat = idx.get(0);
+        int g = idx.get(1);
+        int m = idx.get(2);
+        int v = flat % local_VLEN;
+        int k = (flat / local_VLEN) % local_Nk;
+        int l = (flat / (local_VLEN * local_Nk)) % local_Nl;
         acc_z[IDX5(v,k,l,g,m,local_VLEN,local_Nk,local_Nl,local_Ng)] = Z_START;
     });
 });
@@ -291,12 +308,12 @@ queue.submit([&](sycl::handler& handler) {
     auto acc_a = buf_a.get_access<sycl::access::mode::write>(handler);
     auto acc_b = buf_b.get_access<sycl::access::mode::write>(handler);
     auto acc_c = buf_c.get_access<sycl::access::mode::write>(handler);
-    const size_t local_VLEN = VLEN;
-    const size_t local_Ng = Ng;
+    const int local_VLEN = VLEN;
+    const int local_Ng = Ng;
 
     handler.parallel_for<class init_abc>(sycl::range<2>(local_VLEN, local_Ng), [=](sycl::id<2> idx) {
-        size_t v = idx.get(0);
-        size_t g = idx.get(1);
+        int v = idx.get(0);
+        int g = idx.get(1);
         acc_a[IDX2(v,g,local_VLEN)] = A_START;
         acc_b[IDX2(v,g,local_VLEN)] = B_START;
         acc_c[IDX2(v,g,local_VLEN)] = C_START;
@@ -306,30 +323,30 @@ queue.submit([&](sycl::handler& handler) {
 // acc_sum 초기화 수정
 queue.submit([&](sycl::handler& handler) {
     auto acc_sum = buf_sum.get_access<sycl::access::mode::write>(handler);
-    const size_t local_Nj = Nj;
-    const size_t local_Nk = Nk;
-    const size_t local_Nl = Nl;
-    const size_t local_Nm = Nm;
+    const int local_Nj = Nj;
+    const int local_Nk = Nk;
+    const int local_Nl = Nl;
+    const int local_Nm = Nm;
 
     handler.parallel_for<class init_sum>(sycl::range<3>(local_Nj * local_Nk, local_Nl, local_Nm), [=](sycl::id<3> idx) {
-        size_t flat = idx.get(0);
-        size_t l = idx.get(1);
-        size_t m = idx.get(2);
-        size_t j = flat % local_Nj;
-        size_t k = flat / local_Nj;
+        int flat = idx.get(0);
+        int l = idx.get(1);
+        int m = idx.get(2);
+        int j = flat % local_Nj;
+        int k = flat / local_Nj;
         acc_sum[IDX4(j,k,l,m,local_Nj,local_Nk,local_Nl)] = 0.0;
     });
 });
 
+    /* End of parallel region */
 
     auto begin = std::chrono::high_resolution_clock::now();
     /* Run the kernel multiple times */
     for (int t = 0; t < ntimes; t++) {
         auto tick = std::chrono::high_resolution_clock::now();
 
-
-        kernel(Ng, Ni, Nj, Nk, Nl, Nm, r, q, x, y, z, a, b, c, sum);
-
+       // kernel(Ng, Ni, Nj, Nk, Nl, Nm, r, q, x, y, z, a, b, c, sum);
+        kernel_sycl(&queue, Ng, Ni, Nj, Nk, Nl, Nm, &buf_r, &buf_q, &buf_x, &buf_y, &buf_z, &buf_a, &buf_b, &buf_c, &buf_sum);
         /* Swap the pointers */
         double *tmp = q; q = r; r = tmp;
 
@@ -342,8 +359,9 @@ queue.submit([&](sycl::handler& handler) {
 
     /* Check the results - total of the sum array */
     double total = 0.0;
-    for (int i = 0; i < Nj * Nk * Nl * Nm; i++) 
+    for (int i = 0; i < Nj * Nk * Nl * Nm; i++) {
         total += sum[i];
+        }
     std::cout << std::fixed << std::setprecision(6);
     std::cout << "Sum total: " << total << "\n";
 
@@ -424,73 +442,73 @@ void kernel(
     } // Nm 
 } 
 
-/*
 void kernel_sycl(
-    const int Ng, 
-    const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
-    double* r,
-    const double* q,
-    double* x,
-    double* y,
-    double* z,
-    const double* a,
-    const double* b,
-    const double* c,
-    double* sum
+    sycl::queue* queue,
+    const int Ng, const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
+    sycl::buffer<double>* buf_r,
+    sycl::buffer<double>* buf_q,
+    sycl::buffer<double>* buf_x,
+    sycl::buffer<double>* buf_y,
+    sycl::buffer<double>* buf_z,
+    sycl::buffer<double>* buf_a,
+    sycl::buffer<double>* buf_b,
+    sycl::buffer<double>* buf_c,
+    sycl::buffer<double>* buf_sum
 ) {
-    sycl::queue queue;
-    // 데이터를 위한 버퍼 생성
-    sycl::buffer<double> r_buf(r, Nm * Ng * Nl * Nk * Nj * VLEN);
-    sycl::buffer<double> q_buf(q, Nm * Ng * Nl * Nk * Nj * VLEN);
-    sycl::buffer<double> x_buf(x, Nm * Ng * Nk * Nj * VLEN);
-    sycl::buffer<double> y_buf(y, Nm * Ng * Nl * Nj * VLEN);
-    sycl::buffer<double> z_buf(z, Nm * Ng * Nl * Nk * VLEN);
-    sycl::buffer<double> a_buf(a, Ng * VLEN);
-    sycl::buffer<double> b_buf(b, Ng * VLEN);
-    sycl::buffer<double> c_buf(c, Ng * VLEN);
-    sycl::buffer<double> sum_buf(sum, Nm * Nl * Nk * Nj);
+    // SYCL 큐 생성
+    // 버퍼 생성
+    // 이미했으니 생략가능? or 또 해야하나?
 
-    queue.submit([&](sycl::handler& cgh) {
-        auto r_acc = r_buf.get_access<sycl::access::mode::read_write>(cgh);
-        auto q_acc = q_buf.get_access<sycl::access::mode::read>(cgh);
-        auto x_acc = x_buf.get_access<sycl::access::mode::read_write>(cgh);
-        auto y_acc = y_buf.get_access<sycl::access::mode::read_write>(cgh);
-        auto z_acc = z_buf.get_access<sycl::access::mode::read_write>(cgh);
-        auto a_acc = a_buf.get_access<sycl::access::mode::read>(cgh);
-        auto b_acc = b_buf.get_access<sycl::access::mode::read>(cgh);
-        auto c_acc = c_buf.get_access<sycl::access::mode::read>(cgh);
-        auto sum_acc = sum_buf.get_access<sycl::access::mode::read_write>(cgh);
+   
+    // 커널 실행
+    queue->submit([&](sycl::handler& h) {
+        auto r = buf_r->get_access<sycl::access::mode::read_write>(h);
+        auto q = buf_q->get_access<sycl::access::mode::read>(h);
+        auto x = buf_x->get_access<sycl::access::mode::read_write>(h);
+        auto y = buf_y->get_access<sycl::access::mode::read_write>(h);
+        auto z = buf_z->get_access<sycl::access::mode::read_write>(h);
+        auto a = buf_a->get_access<sycl::access::mode::read>(h);
+        auto b = buf_b->get_access<sycl::access::mode::read>(h);
+        auto c = buf_c->get_access<sycl::access::mode::read>(h);
+        auto sum = buf_sum->get_access<sycl::access::mode::read_write>(h);
 
-        // 작업을 장치에 디스패치
-        cgh.parallel_for(sycl::range<5>{Nm, Ng, Nl, Nk, Nj}, [=](sycl::id<5> idx) {
-            int m = idx[0];
-            int g = idx[1];
-            int l = idx[2];
-            int k = idx[3];
-            int j = idx[4];
+        h.parallel_for(sycl::range<1>(Nm * Ng * Nl * Nk * Nj), [=](sycl::id<1> id) {
+            int idx = id[0];
+            int m = idx / (Ng * Nl * Nk * Nj);
+            int rem = idx % (Ng * Nl * Nk * Nj);
+            int g = rem / (Nl * Nk * Nj);
+            rem = rem % (Nl * Nk * Nj);
+            int l = rem / (Nk * Nj);
+            rem = rem % (Nk * Nj);
+            int k = rem / Nj;
+            int j = rem % Nj;
+
             double total = 0.0;
-
             for (int v = 0; v < VLEN; v++) {
-                int index = (((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v;
-                r_acc[index] = q_acc[index] +
-                               a_acc[g * VLEN + v] * x_acc[((m * Ng + g) * Nk + k) * Nj + j * VLEN + v] +
-                               b_acc[g * VLEN + v] * y_acc[((m * Ng + g) * Nl + l) * Nj + j * VLEN + v] +
-                               c_acc[g * VLEN + v] * z_acc[((m * Ng + g) * Nl + l) * Nk + k * VLEN + v];
+                int global_idx = ((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN + v;
+                int x_idx = (((m * Ng + g) * Nk + k) * Nj + j) * VLEN + v;
+                int y_idx = (((m * Ng + g) * Nl + l) * Nj + j) * VLEN + v;
+                int z_idx = (((m * Ng + g) * Nl + l) * Nk + k) * VLEN + v;
+                int a_b_c_idx = g * VLEN + v;
 
-                x_acc[((m * Ng + g) * Nk + k) * Nj + j * VLEN + v] = 0.2 * r_acc[index] - x_acc[((m * Ng + g) * Nk + k) * Nj + j * VLEN + v];
-                y_acc[((m * Ng + g) * Nl + l) * Nj + j * VLEN + v] = 0.2 * r_acc[index] - y_acc[((m * Ng + g) * Nl + l) * Nj + j * VLEN + v];
-                z_acc[((m * Ng + g) * Nl + l) * Nk + k * VLEN + v] = 0.2 * r_acc[index] - z_acc[((m * Ng + g) * Nl + l) * Nk + k * VLEN + v];
+                r[global_idx] =
+                    q[global_idx] +
+                    a[a_b_c_idx] * x[x_idx] +
+                    b[a_b_c_idx] * y[y_idx] +
+                    c[a_b_c_idx] * z[z_idx];
 
-                total += r_acc[index];
+                x[x_idx] = 0.2 * r[global_idx] - x[x_idx];
+                y[y_idx] = 0.2 * r[global_idx] - y[y_idx];
+                z[z_idx] = 0.2 * r[global_idx] - z[z_idx];
+
+                total += r[global_idx];
             }
-
-            sum_acc[((m * Nl + l) * Nk + k) * Nj + j] += total;
+            sum[((m * Nl + l) * Nk + k) * Nj + j] += total;
         });
     });
 
-    queue.wait_and_throw(); // 연산이 완료될 때까지 대기
+    queue->wait();
 }
-*/
 
 void parse_args(int argc, char *argv[])
 {

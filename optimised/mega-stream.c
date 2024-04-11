@@ -109,7 +109,7 @@ int Nm = OUTER;
 int Ng;
 
 /* Number of iterations to run benchmark */
-int ntimes = 100;
+int ntimes = 1000;
 
 int main(int argc, char *argv[])
 {
