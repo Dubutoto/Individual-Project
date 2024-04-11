@@ -184,18 +184,7 @@ int main(int argc, char *argv[])
 
     double timings[ntimes];
 
-    double *q = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double) * VLEN * Nj * Nk * Nl * Nm * Ng));
-    double *r = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double) * VLEN * Nj * Nk * Nl * Nm * Ng));
 
-    double *x = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*VLEN*Nj*Nk*Nm*Ng));
-    double *y = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*VLEN*Nj*Nl*Nm*Ng));
-    double *z = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*VLEN*Nk*Nl*Nm*Ng));
-
-    double *a = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*VLEN*Ng));
-    double *b = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*VLEN*Ng));
-    double *c = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*VLEN*Ng));
-
-    double *sum = static_cast<double *>(aligned_alloc(ALIGNMENT, sizeof(double)*Nj*Nk*Nl*Nm));
 
     // q, r, x, y, z, a, b, c, sum에 대한 SYCL 버퍼 생성
     sycl::buffer<double> buf_q(VLEN * Nj * Nk * Nl * Nm * Ng);
@@ -337,7 +326,6 @@ queue.submit([&](sycl::handler& handler) {
         acc_sum[IDX4(j,k,l,m,local_Nj,local_Nk,local_Nl)] = 0.0;
     });
 });
-
     /* End of parallel region */
 
     auto begin = std::chrono::high_resolution_clock::now();
@@ -348,7 +336,10 @@ queue.submit([&](sycl::handler& handler) {
        // kernel(Ng, Ni, Nj, Nk, Nl, Nm, r, q, x, y, z, a, b, c, sum);
         kernel_sycl(&queue, Ng, Ni, Nj, Nk, Nl, Nm, &buf_r, &buf_q, &buf_x, &buf_y, &buf_z, &buf_a, &buf_b, &buf_c, &buf_sum);
         /* Swap the pointers */
-        double *tmp = q; q = r; r = tmp;
+        //double *tmp = buf_q; buf_q = buf_r; buf_r = tmp;
+        auto tmp = std::move(buf_r);
+        buf_r = std::move(buf_q);
+        buf_q = std::move(tmp);
 
         auto tock = std::chrono::high_resolution_clock::now();
         timings[t] = std::chrono::duration<double>(tock - tick).count();
@@ -359,9 +350,36 @@ queue.submit([&](sycl::handler& handler) {
 
     /* Check the results - total of the sum array */
     double total = 0.0;
-    for (int i = 0; i < Nj * Nk * Nl * Nm; i++) {
-        total += sum[i];
-        }
+
+    {
+    // 결과를 저장할 버퍼 생성
+    sycl::buffer<double, 1> buf_total(&total, sycl::range<1>(1));
+    const int local_Nj = Nj;
+    const int local_Nk = Nk;
+    const int local_Nl = Nl;
+    const int local_Nm = Nm;
+        // 큐에 커맨드 그룹 제출
+        queue.submit([&](sycl::handler& cgh) {
+            // 읽기 접근자
+            auto acc_sum = buf_sum.get_access<sycl::access::mode::read>(cgh);
+            // 쓰기 접근자
+            auto acc_total = buf_total.get_access<sycl::access::mode::write>(cgh);
+
+            // 커널 실행
+            cgh.single_task([=]() {
+                double local_total = 0.0;
+                for (int i = 0; i < local_Nj*local_Nk*local_Nl*local_Nm; i++) {
+                    local_total += acc_sum[i];
+                }
+                acc_total[0] = local_total;
+            });
+        });
+    } // 버퍼가 범위를 벗어나면 데이터는 자동으로 복사됩니다.
+
+    // 커맨드 큐의 모든 작업이 완료되기를 기다림
+    queue.wait();
+
+    // 결과 출력
     std::cout << std::fixed << std::setprecision(6);
     std::cout << "Sum total: " << total << "\n";
 
@@ -392,55 +410,6 @@ queue.submit([&](sycl::handler& handler) {
 /**************************************************************************
  * Kernel
  *************************************************************************/
-#include <immintrin.h>
-void kernel(
-    const int Ng, 
-    const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
-    double* __restrict r,
-    const double* __restrict q,
-    double* __restrict x,
-    double* __restrict y,
-    double* __restrict z,
-    const double* __restrict a,
-    const double* __restrict b,
-    const double* __restrict c,
-    double* __restrict sum
-) {
-    #pragma omp parallel for
-    for (int m = 0; m < Nm; m++) {
-        for (int g = 0; g < Ng; g++) {
-            for (int l = 0; l < Nl; l++) {
-                for (int k = 0; k < Nk; k++) {
-                    for (int j = 0; j < Nj; j++) {
-                        double total = 0.0;
-                        _mm_prefetch((const char *)&q[((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN] + 32, _MM_HINT_T1);
-                        #pragma vector nontemporal(r)
-                        #pragma omp simd reduction(+:total) aligned(a, b, c, x, y, z, r, q:64)
-                        for (int v = 0; v < VLEN; v++) {
-                            // Set r
-                            r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] =
-                                q[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] +
-                                a[g * VLEN + v] * x[(((m * Ng + g) * Nk + k) * Nj + j) * VLEN + v] +
-                                b[g * VLEN + v] * y[(((m * Ng + g) * Nl + l) * Nj + j) * VLEN + v] +
-                                c[g * VLEN + v] * z[(((m * Ng + g) * Nl + l) * Nk + k) * VLEN + v];
-
-                            // Update x, y and z
-                            x[(((m * Ng + g) * Nk + k) * Nj + j) * VLEN + v] = 0.2 * r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] - x[(((m * Ng + g) * Nk + k) * Nj + j) * VLEN + v];
-                            y[(((m * Ng + g) * Nl + l) * Nj + j) * VLEN + v] = 0.2 * r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] - y[(((m * Ng + g) * Nl + l) * Nj + j) * VLEN + v];
-                            z[(((m * Ng + g) * Nl + l) * Nk + k) * VLEN + v] = 0.2 * r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v] - z[(((m * Ng + g) * Nl + l) * Nk + k) * VLEN + v];
-
-                            // Reduce over Ni
-                            total += r[(((((m * Ng + g) * Nl + l) * Nk + k) * Nj + j) * VLEN) + v];
-                        }
-
-                        // Update sum
-                        sum[((m * Nl + l) * Nk + k) * Nj + j] += total;
-                    }
-                } // Nk 
-            } // Nl 
-        } // Ng 
-    } // Nm 
-} 
 
 void kernel_sycl(
     sycl::queue* queue,
