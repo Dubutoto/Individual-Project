@@ -28,7 +28,6 @@
 #include <iostream>
 #include <iomanip>
 #include <cfloat>
-#include <omp.h>
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
@@ -77,7 +76,6 @@ static_assert((VLEN > 0) && ((VLEN & (VLEN-1)) == 0), "VLEN must be a power of 2
 /* Default alignment of 2 MB page boundaries */
 #define ALIGNMENT 2*1024*1024
 
-
 /* Tollerance with which to check final array values */
 #define TOLR 1.0E-15
 
@@ -97,22 +95,7 @@ void* aligned_alloc(size_t alignment, size_t size) {
     posix_memalign(&mem, alignment, size); // posix_memalign 함수는 그대로 사용
     return mem;
 }
-#endif // 미리 처리 지시문 종료
-
-// Need to change the '__restrict' depends on compiler
-
-void kernel(
-    const int Ng, const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
-    double* __restrict r,
-    const double* __restrict q,
-    double* __restrict x,
-    double* __restrict y,
-    double* __restrict z,
-    const double* __restrict a,
-    const double* __restrict b,
-    const double* __restrict c,
-    double* __restrict sum
-);
+#endif 
 
 void kernel_sycl(
     sycl::queue* queue,
@@ -141,11 +124,18 @@ int Ng;
 /* Number of iterations to run benchmark */
 int ntimes = 1000;
 
-
-
 int main(int argc, char *argv[])
 {
     std::cout << "MEGA-STREAM! - v" << VERSION << "\n\n";
+
+    auto platforms = sycl::platform::get_platforms();
+    for (const auto& platform : platforms) {
+        std::cout << "Platform: " << platform.get_info<sycl::info::platform::name>() << std::endl;
+        auto devices = platform.get_devices();
+        for (const auto& device : devices) {
+            std::cout << "  Device: " << device.get_info<sycl::info::device::name>() << std::endl;
+        }
+    }
 
     parse_args(argc, argv);
 
@@ -164,13 +154,14 @@ int main(int argc, char *argv[])
             3.0*Ni +              // a, b, c
             Nj*Nk*Nl*Nm           // sum
     );
+    
     std::cout << "Memory footprint: " << footprint << " MB\n";
 
     /* Total memory moved (in the best case) - the arrays plus an extra sum as update is += */
     const double moved = (double)sizeof(double) * 1.0E-6 * (
         Ni*Nj*Nk*Nl*Nm  + // read q
         Ni*Nj*Nk*Nl*Nm  + // write r
-        Ni+Ni+Ni            + // read a, b and c
+        Ni+Ni+Ni        + // read a, b and c
         2.0*Ni*Nj*Nk*Nm + // read and write x
         2.0*Ni*Nj*Nl*Nm + // read and write y
         2.0*Ni*Nk*Nl*Nm + // read and write z
@@ -182,9 +173,7 @@ int main(int argc, char *argv[])
     std::cout << "Inner dimension split into " << Ng << " chunks of size " << VLEN << "\n";
     std::cout << "Running " << ntimes << " times\n\n";
 
-    double timings[ntimes];
-
-
+    std::vector<double> timings(ntimes);
 
     // q, r, x, y, z, a, b, c, sum에 대한 SYCL 버퍼 생성
     sycl::buffer<double> buf_q(VLEN * Nj * Nk * Nl * Nm * Ng);
@@ -200,7 +189,7 @@ int main(int argc, char *argv[])
 
     sycl::buffer<double> buf_sum(Nj * Nk * Nl * Nm);
 
-    sycl::queue queue;
+    sycl::queue queue(sycl::cpu_selector_v);
 
     queue.submit([&](sycl::handler& handler) {
     auto acc_q = buf_q.get_access<sycl::access::mode::write>(handler);
@@ -228,12 +217,12 @@ int main(int argc, char *argv[])
             int m = combined / local_Ng;
             acc_q[IDX6(v,j,k,l,g,m,local_VLEN,local_Nj,local_Nk,local_Nl,local_Ng)] = Q_START;
             acc_r[IDX6(v,j,k,l,g,m,local_VLEN,local_Nj,local_Nk,local_Nl,local_Ng)] = R_START;
-        }
-    );
-});
+            }
+        );
+    });
 
-// acc_x 초기화 수정
-queue.submit([&](sycl::handler& handler) {
+    // acc_x 초기화 수정
+    queue.submit([&](sycl::handler& handler) {
     auto acc_x = buf_x.get_access<sycl::access::mode::write>(handler);
     const int local_VLEN = VLEN;
     const int local_Nj = Nj;
@@ -325,9 +314,8 @@ queue.submit([&](sycl::handler& handler) {
         int k = flat / local_Nj;
         acc_sum[IDX4(j,k,l,m,local_Nj,local_Nk,local_Nl)] = 0.0;
     });
-});
-    /* End of parallel region */
-
+}); /* End of parallel region */
+    
     auto begin = std::chrono::high_resolution_clock::now();
     /* Run the kernel multiple times */
     for (int t = 0; t < ntimes; t++) {

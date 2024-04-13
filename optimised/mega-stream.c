@@ -24,7 +24,6 @@
 */
 
 #define VERSION "2.0"
-
 #include <float.h>
 #include <omp.h>
 #include <math.h>
