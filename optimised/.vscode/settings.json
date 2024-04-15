@@ -3,6 +3,7 @@
     "files.associations": {
         "random": "cpp",
         "cstdlib": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "iomanip": "cpp"
     }
 }

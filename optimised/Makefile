@@ -24,7 +24,7 @@ CFLAGS = -std=c++17 -O3 -fsycl
 FTN = ifort
 FFLAGS = -O3
 
-OMP = -qopenmp
+OMP = 
 
 default: mega-stream
 

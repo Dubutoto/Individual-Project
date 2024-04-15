@@ -122,12 +122,14 @@ int Nm = OUTER;
 int Ng;
 
 /* Number of iterations to run benchmark */
-int ntimes = 1000;
+int ntimes = 100;
 
 int main(int argc, char *argv[])
 {
     std::cout << "MEGA-STREAM! - v" << VERSION << "\n\n";
 
+    //device detecting code
+    /*
     auto platforms = sycl::platform::get_platforms();
     for (const auto& platform : platforms) {
         std::cout << "Platform: " << platform.get_info<sycl::info::platform::name>() << std::endl;
@@ -136,7 +138,7 @@ int main(int argc, char *argv[])
             std::cout << "  Device: " << device.get_info<sycl::info::device::name>() << std::endl;
         }
     }
-
+    */
     parse_args(argc, argv);
 
     std::cout << "Small arrays:  " << Ni << " elements\t\t"
@@ -189,6 +191,7 @@ int main(int argc, char *argv[])
 
     sycl::buffer<double> buf_sum(Nj * Nk * Nl * Nm);
 
+    //device selector
     sycl::queue queue(sycl::cpu_selector_v);
 
     queue.submit([&](sycl::handler& handler) {
@@ -412,11 +415,6 @@ void kernel_sycl(
     sycl::buffer<double>* buf_c,
     sycl::buffer<double>* buf_sum
 ) {
-    // SYCL 큐 생성
-    // 버퍼 생성
-    // 이미했으니 생략가능? or 또 해야하나?
-
-   
     // 커널 실행
     queue->submit([&](sycl::handler& h) {
         auto r = buf_r->get_access<sycl::access::mode::read_write>(h);
@@ -463,7 +461,7 @@ void kernel_sycl(
             sum[((m * Nl + l) * Nk + k) * Nj + j] += total;
         });
     });
-
+    
     queue->wait();
 }
 
