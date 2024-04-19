@@ -1,0 +1,14 @@
+MEGA-STREAM! - v2.0
+
+Small arrays:  128 elements		1.024 KB
+Medium arrays: 128 x 16 x 16 x 64 elements	16.7772 MB
+Large arrays:  128 x 16 x 16 x 16 x 64 elements	268.435 MB
+Memory footprint: 589.303 MB
+Inner dimension split into 16 chunks of size 8
+Running 1000 times
+
+Sum total: 28075298350409436.000000
+
+Bandwidth MB/s  Min time    Max time    Avg time
+76939.2        0.008341     0.011907     0.009214
+Total time: 9.488954

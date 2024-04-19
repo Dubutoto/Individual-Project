@@ -1,0 +1,54 @@
+Elapsed Time: 15.713s
+    Paused Time: 0s
+Effective CPU Utilization: 61.5% (24.587 out of 40 logical CPUs)
+ | The metric value is low, which may signal a poor logical CPU cores
+ | utilization caused by load imbalance, threading runtime overhead, contended
+ | synchronization, or thread/process underutilization. Explore sub-metrics to
+ | estimate the efficiency of MPI and OpenMP parallelism or run the Locks and
+ | Waits analysis to identify parallel bottlenecks for other parallel runtimes.
+ |
+    Total Thread Count: 40
+        Thread Oversubscription: 0s (0.0% of CPU Time)
+    Wait Time with poor CPU Utilization: 48.359s (43.7% of Wait Time)
+
+        Top Waiting Objects
+        Sync Object         Wait Time with poor CPU Utilization  (% from Object Wait Time)(%)  Wait Count
+        ------------------  -----------------------------------  ----------------------------  ----------
+        Futex 0x9570aa4c                                46.762s                         46.9%      84,563
+        Unknown 0x671da9d3                               0.928s                          9.1%       1,002
+        Sleep                                            0.518s                        100.0%         389
+        Futex 0x20ce5db0                                 0.072s                        100.0%          28
+        Mutex 0x9cc6d1c9                                 0.062s                        100.0%          27
+        [Others]                                         0.017s                         60.8%         332
+    Spin and Overhead Time: 7.691s (2.0% of CPU Time)
+
+        Top Functions with Spin or Overhead Time
+        Function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Module          Spin and Overhead Time  (% from CPU Time)(%)
+        -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  --------------  ----------------------  --------------------
+        [TBB Scheduler Internals]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          libtbb.so.12                    1.465s                  0.4%
+        sched_yield                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        libc.so.6                       1.054s                  0.3%
+        tbb::detail::r1::thread_dispatcher::process                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        libtbb.so.12                    0.776s                  0.2%
+        tbb::detail::d1::dynamic_grainsize_mode<tbb::detail::d1::adaptive_mode<tbb::detail::d1::auto_partition_type>>::work_balance<tbb::detail::d1::start_for<Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB1d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>, TaskLoopBody1D<Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB1d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>>, tbb::detail::d1::auto_partitioner const>, Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB1d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>>  libintelocl.so                  0.660s                  0.2%
+        tbb::detail::d1::dynamic_grainsize_mode<tbb::detail::d1::adaptive_mode<tbb::detail::d1::auto_partition_type>>::work_balance<tbb::detail::d1::start_for<Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB3d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>, TaskLoopBody3D<Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB3d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>>, tbb::detail::d1::auto_partitioner const>, Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB3d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>>  libintelocl.so                  0.418s                  0.1%
+        [Others]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           N/A                             3.318s                  0.8%
+Collection and Platform Info
+    Application Command Line: ./mega-stream 
+    Operating System: 4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+    Computer Name: volta-001
+    Result Size: 69.4 MB 
+    Collection start time: 15:39:58 19/04/2024 UTC
+    Collection stop time: 15:40:17 19/04/2024 UTC
+    Collector Type: User-mode sampling and tracing
+    CPU
+        Name: Intel(R) Xeon(R) Processor code named Cascadelake
+        Frequency
+        Logical CPU Count: 40
+        LLC size: 28.8 MB 
+        Cache Allocation Technology
+            Level 2 capability: not detected
+            Level 3 capability: available
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.

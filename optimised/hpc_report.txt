@@ -1,0 +1,72 @@
+Elapsed Time: 10.972s
+    SP GFLOPS: 0.000
+    DP GFLOPS: 90.996
+    x87 GFLOPS: 0.000
+    CPI Rate: 2.243
+     | The CPI may be too high. This could be caused by issues such as memory
+     | stalls, instruction starvation, branch misprediction or long latency
+     | instructions. Explore the other hardware-related metrics to identify what
+     | is causing high CPI.
+     |
+    Average CPU Frequency: 2.024 GHz
+    Total Thread Count: 40
+Effective CPU Utilization: 80.0%
+    Average Effective CPU Utilization: 32.003 out of 40
+Memory Bound: 14.4% of Pipeline Slots
+    Cache Bound
+    DRAM Bound
+        DRAM Bandwidth Bound: 11.0% of Elapsed Time
+         | The system spent much time heavily utilizing DRAM bandwidth. Improve
+         | data accesses to reduce cacheline transfers from/to memory using
+         | these possible techniques: 1) consume all bytes of each cacheline
+         | before it is evicted (for example, reorder structure elements and
+         | split non-hot ones); 2) merge compute-limited and bandwidth-limited
+         | loops; 3) use NUMA optimizations on a multi-socket system. Note:
+         | software prefetches do not help a bandwidth-limited application. Run
+         | Memory Access analysis to identify data structures to be allocated in
+         | High Bandwidth Memory (HBM), if available.
+         |
+    NUMA: % of Remote Accesses: 62.7%
+
+    Bandwidth Utilization
+    Bandwidth Domain             Platform Maximum  Observed Maximum  Average  % of Elapsed Time with High BW Utilization(%)
+    ---------------------------  ----------------  ----------------  -------  ---------------------------------------------
+    DRAM, GB/sec                 242                        149.200  115.978                                           0.0%
+    DRAM Single-Package, GB/sec  121                         94.400   66.762                                          11.0%
+Vectorization: 100.0% of Packed FP Operations
+    Instruction Mix
+        SP FLOPs: 0.0% of uOps
+            Packed: 0.0% from SP FP
+                128-bit: 0.0% from SP FP
+                256-bit: 0.0% from SP FP
+                512-bit: 0.0% from SP FP
+            Scalar: 0.0% from SP FP
+        DP FLOPs: 8.4% of uOps
+            Packed: 100.0% from DP FP
+                128-bit: 0.0% from DP FP
+                256-bit: 0.0% from DP FP
+                512-bit: 100.0% from DP FP
+            Scalar: 0.0% from DP FP
+        x87 FLOPs: 0.0% of uOps
+        Non-FP: 91.6% of uOps
+    FP Arith/Mem Rd Instr. Ratio: 0.797
+    FP Arith/Mem Wr Instr. Ratio: 1.847
+Collection and Platform Info
+    Application Command Line: ./mega-stream 
+    Operating System: 4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+    Computer Name: volta-001
+    Result Size: 139.1 MB 
+    Collection start time: 15:42:51 19/04/2024 UTC
+    Collection stop time: 15:43:02 19/04/2024 UTC
+    Collector Type: Driverless Perf system-wide sampling
+    CPU
+        Name: Intel(R) Xeon(R) Processor code named Cascadelake
+        Frequency: 2.095 GHz
+        Logical CPU Count: 40
+        Max DRAM Single-Package Bandwidth: 121.000 GB/s
+        LLC size: 28.8 MB 
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.

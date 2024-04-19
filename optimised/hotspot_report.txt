@@ -1,0 +1,60 @@
+Elapsed Time: 15.213s
+    CPU Time: 373.630s
+        Effective Time: 365.199s
+        Spin Time: 3.999s
+            Imbalance or Serial Spinning: 2.107s
+            Lock Contention: 0.447s
+            Other: 1.446s
+        Overhead Time: 4.431s
+            Creation: 0.745s
+            Scheduling: 3.687s
+            Reduction: 0s
+            Atomics: 0s
+            Other: 0s
+    Total Thread Count: 40
+    Paused Time: 0s
+
+Top Hotspots
+Function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Module            CPU Time  % of CPU Time(%)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  ----------------  --------  ----------------
+kernel_sycl(sycl::_V1::queue*, int, int, int, int, int, int, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*)::{lambda(sycl::_V1::handler&)#1}::operator()(sycl::_V1::handler&) const::{lambda(sycl::_V1::id<(int)1>)#1}::operator()  7f029ac54f3762d7  331.628s             88.8%
+__ocl_svml_z0_idiv16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         __ocl_svml_z0.so   12.780s              3.4%
+main::{lambda(sycl::_V1::handler&)#1}::operator()(sycl::_V1::handler&) const::{lambda(sycl::_V1::id<(int)3>)#1}::operator()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  7f029ac54f3762d7    9.014s              2.4%
+_INTERNAL338ec324::tbb::detail::d0::machine_pause                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            libtbb.so.12        3.089s              0.8%
+[TBB Scheduler Internals]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    libtbb.so.12        1.917s              0.5%
+[Others]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     N/A                15.202s              4.1%
+
+Top Tasks
+Task Type         Task Time  Task Count  Average Task Time
+----------------  ---------  ----------  -----------------
+tbb_parallel_for   368.068s      40,125             0.009s
+tbb_custom          12.796s       2,544             0.005s
+Effective CPU Utilization: 61.7%
+ | The metric value is low, which may signal a poor logical CPU cores
+ | utilization caused by load imbalance, threading runtime overhead, contended
+ | synchronization, or thread/process underutilization. Explore sub-metrics to
+ | estimate the efficiency of MPI and OpenMP parallelism or run the Locks and
+ | Waits analysis to identify parallel bottlenecks for other parallel runtimes.
+ |
+    Average Effective CPU Utilization: 24.699 out of 40
+Collection and Platform Info
+    Application Command Line: ./mega-stream 
+    Operating System: 4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+    Computer Name: volta-001
+    Result Size: 39.0 MB 
+    Collection start time: 15:39:23 19/04/2024 UTC
+    Collection stop time: 15:39:38 19/04/2024 UTC
+    Collector Type: Driverless Perf per-process counting,User-mode sampling and tracing
+    CPU
+        Name: Intel(R) Xeon(R) Processor code named Cascadelake
+        Frequency: 2.095 GHz
+        Logical CPU Count: 40
+        LLC size: 28.8 MB 
+        Cache Allocation Technology
+            Level 2 capability: not detected
+            Level 3 capability: available
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.

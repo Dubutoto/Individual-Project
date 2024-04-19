@@ -1,0 +1,40 @@
+Hierarchy Level	Metric Name	Metric Value
+0	Elapsed Time	15.712825
+1	Paused Time	0.0
+0	Effective CPU Utilization	61.5% (24.587 out of 40 logical CPUs)
+1	Total Thread Count	40
+2	Thread Oversubscription	0s (0.0% of CPU Time)
+1	Wait Time with poor CPU Utilization	48.359s (43.7% of Wait Time)
+2	Top Waiting Objects	
+2	Sync Object	Wait Time with poor CPU Utilization	(% from Object Wait Time)(%)	Wait Count
+2	Futex 0x9570aa4c	46.761756	46.9	84563
+2	Unknown 0x671da9d3	0.928175	9.1	1002
+2	Sleep	0.518143	100.0	389
+2	Futex 0x20ce5db0	0.071548	100.0	28
+2	Mutex 0x9cc6d1c9	0.062222	100.0	27
+2	[Others]	0.017116	60.8	332
+1	Spin and Overhead Time	7.691s (2.0% of CPU Time)
+2	Top Functions with Spin or Overhead Time	
+2	Function	Module	Spin and Overhead Time	(% from CPU Time)(%)
+2	[TBB Scheduler Internals]	libtbb.so.12	1.465155	0.4
+2	sched_yield	libc.so.6	1.054051	0.3
+2	tbb::detail::r1::thread_dispatcher::process	libtbb.so.12	0.775549	0.2
+2	tbb::detail::d1::dynamic_grainsize_mode<tbb::detail::d1::adaptive_mode<tbb::detail::d1::auto_partition_type>>::work_balance<tbb::detail::d1::start_for<Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB1d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>, TaskLoopBody1D<Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB1d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>>, tbb::detail::d1::auto_partitioner const>, Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB1d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>>	libintelocl.so	0.660009	0.2
+2	tbb::detail::d1::dynamic_grainsize_mode<tbb::detail::d1::adaptive_mode<tbb::detail::d1::auto_partition_type>>::work_balance<tbb::detail::d1::start_for<Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB3d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>, TaskLoopBody3D<Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB3d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>>, tbb::detail::d1::auto_partitioner const>, Intel::OpenCL::TaskExecutor::BlockedRangeByDefaultTBB3d<Intel::OpenCL::TaskExecutor::NoProportionalSplit>>	libintelocl.so	0.418488	0.1
+2	[Others]	N/A	3.317711	0.8
+0	Collection and Platform Info	
+1	Application Command Line	./mega-stream 
+1	Operating System	4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+1	Computer Name	volta-001
+1	Result Size	69364001
+1	Collection start time	15:39:58 19/04/2024 UTC
+1	Collection stop time	15:40:17 19/04/2024 UTC
+1	Collector Type	User-mode sampling and tracing
+1	CPU	
+2	Name	Intel(R) Xeon(R) Processor code named Cascadelake
+2	Frequency	
+2	Logical CPU Count	40
+2	LLC size	28835840
+2	Cache Allocation Technology	
+3	Level 2 capability	not detected
+3	Level 3 capability	available

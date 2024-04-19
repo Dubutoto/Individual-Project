@@ -91,8 +91,8 @@ static_assert((VLEN > 0) && ((VLEN & (VLEN-1)) == 0), "VLEN must be a power of 2
 
 #ifdef __APPLE__
 void* aligned_alloc(size_t alignment, size_t size) {
-    void* mem = nullptr; // C++에서 널 포인터로 nullptr 사용
-    posix_memalign(&mem, alignment, size); // posix_memalign 함수는 그대로 사용
+    void* mem = nullptr; 
+    posix_memalign(&mem, alignment, size); 
     return mem;
 }
 #endif 
@@ -122,7 +122,7 @@ int Nm = OUTER;
 int Ng;
 
 /* Number of iterations to run benchmark */
-int ntimes = 100;
+int ntimes = 1000;
 
 int main(int argc, char *argv[])
 {
@@ -139,6 +139,7 @@ int main(int argc, char *argv[])
         }
     }
     */
+    
     parse_args(argc, argv);
 
     std::cout << "Small arrays:  " << Ni << " elements\t\t"

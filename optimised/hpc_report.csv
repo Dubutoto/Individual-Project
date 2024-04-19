@@ -1,0 +1,51 @@
+Hierarchy Level	Metric Name	Metric Value
+0	Elapsed Time	10.971941
+1	SP GFLOPS	0.0
+1	DP GFLOPS	90.995884
+1	x87 GFLOPS	0.0
+1	CPI Rate	2.243305
+1	Average CPU Frequency	2024333804.986808
+1	Total Thread Count	40
+0	Effective CPU Utilization	80.0
+1	Average Effective CPU Utilization	32.003 out of 40
+0	Memory Bound	14.4
+1	Cache Bound	
+1	DRAM Bound	
+2	DRAM Bandwidth Bound	11.0
+1	NUMA: % of Remote Accesses	62.7
+1	Bandwidth Utilization	
+1	Bandwidth Domain	Platform Maximum	Observed Maximum	Average	% of Elapsed Time with High BW Utilization(%)
+1	DRAM, GB/sec	242.000000	149.200000	115.977653	0.0
+1	DRAM Single-Package, GB/sec	121.000000	94.400000	66.762114	11.0
+0	Vectorization	100.0
+1	Instruction Mix	
+2	SP FLOPs	0.0
+3	Packed	0.0
+4	128-bit	0.0
+4	256-bit	0.0
+4	512-bit	0.0
+3	Scalar	0.0
+2	DP FLOPs	8.4
+3	Packed	100.0
+4	128-bit	0.0
+4	256-bit	0.0
+4	512-bit	100.0
+3	Scalar	0.0
+2	x87 FLOPs	0.0
+2	Non-FP	91.6
+1	FP Arith/Mem Rd Instr. Ratio	0.797248
+1	FP Arith/Mem Wr Instr. Ratio	1.846702
+0	Collection and Platform Info	
+1	Application Command Line	./mega-stream 
+1	Operating System	4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+1	Computer Name	volta-001
+1	Result Size	139077415
+1	Collection start time	15:42:51 19/04/2024 UTC
+1	Collection stop time	15:43:02 19/04/2024 UTC
+1	Collector Type	Driverless Perf system-wide sampling
+1	CPU	
+2	Name	Intel(R) Xeon(R) Processor code named Cascadelake
+2	Frequency	2095075057
+2	Logical CPU Count	40
+2	Max DRAM Single-Package Bandwidth	121000000000.000000
+2	LLC size	28835840

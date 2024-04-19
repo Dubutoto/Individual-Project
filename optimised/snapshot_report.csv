@@ -1,0 +1,83 @@
+Hierarchy Level	Metric Name	Metric Value
+0	Elapsed Time	10.855859
+1	IPC	0.435562
+1	SP GFLOPS	0.000009
+1	DP GFLOPS	52.798037
+1	x87 GFLOPS	0.002780
+1	Average CPU Frequency	2042391557.084532
+0	Logical Core Utilization	82.4% (32.947 out of 40)
+1	Physical Core Utilization	82.4% (32.951 out of 40)
+0	Microarchitecture Usage	28.6
+1	Retiring	28.6
+1	Front-End Bound	10.4
+1	Bad Speculation	0.4
+1	Back-End Bound	60.6
+2	Memory Bound	36.1
+3	L1 Bound	26.9
+4	DTLB Overhead	100.0
+5	Load STLB Hit	100.0
+5	Load STLB Miss	0.0
+4	Loads Blocked by Store Forwarding	0.0
+4	Lock Latency	0.0
+4	Split Loads	1.0
+4	4K Aliasing	15.0
+4	FB Full	100.0
+3	L2 Bound	0.0
+3	L3 Bound	5.2
+4	L3 Latency	0.3
+4	SQ Full	6.5
+3	DRAM Bound	11.0
+4	Memory Bandwidth	28.8
+4	Memory Latency	15.3
+5	Local Memory	0.9
+5	Remote Memory	1.4
+5	Remote Cache	0.3
+3	Store Bound	2.7
+4	Store Latency	17.9
+4	Split Stores	0.4
+4	DTLB Store Overhead	0.1
+5	Store STLB Hit	0.1
+5	Store STLB Miss	0.0
+2	Core Bound	24.5
+0	Memory Bound	36.1
+1	Cache Bound	32.0
+1	DRAM Bound	11.0
+1	NUMA: % of Remote Accesses	58.8
+0	Vectorization	100.0
+1	Instruction Mix	
+2	SP FLOPs	0.0
+3	Packed	0.0
+4	128-bit	0.0
+4	256-bit	0.0
+4	512-bit	0.0
+3	Scalar	100.0
+2	DP FLOPs	8.6
+3	Packed	100.0
+4	128-bit	0.0
+4	256-bit	0.0
+4	512-bit	100.0
+3	Scalar	0.0
+2	x87 FLOPs	0.0
+2	Non-FP	91.4
+1	FP Arith/Mem Rd Instr. Ratio	0.926722
+1	FP Arith/Mem Wr Instr. Ratio	2.605351
+0	Collection and Platform Info	
+1	Application Command Line	./mega-stream 
+1	Operating System	4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+1	Computer Name	volta-001
+1	Result Size	3936223
+1	Collection start time	15:38:51 19/04/2024 UTC
+1	Collection stop time	15:39:02 19/04/2024 UTC
+1	Collector Type	Driverless Perf per-process counting
+1	CPU	
+2	Name	Intel(R) Xeon(R) Processor code named Cascadelake
+2	Frequency	2095075015
+2	Logical CPU Count	40
+2	LLC size	28835840
+2	Cache Allocation Technology	
+3	Level 2 capability	not detected
+3	Level 3 capability	available
+0	Recommendations:
+1	Hotspots	Start with Hotspots analysis to understand the efficiency of your algorithm.	Use Hotspots analysis to identify the most time consuming functions. Drill down to see the time spent on every line of code.
+1	Microarchitecture Exploration	There is low microarchitecture usage (28.6%) of available hardware resources. 	Run Microarchitecture Exploration analysis to analyze CPU microarchitecture bottlenecks that can affect application performance.
+1	Memory Access	The Memory Bound metric is high  (36.1%). A significant fraction of execution pipeline slots could be stalled due to demand memory load and stores. 	Use Memory Access analysis to measure metrics that can identify memory access issues.

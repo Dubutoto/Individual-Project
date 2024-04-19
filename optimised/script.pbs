@@ -1,0 +1,23 @@
+#!/bin/bash
+#PBS -q voltaq
+#PBS -l select=1:ncpus=36:ngpus=2
+#PBS -l walltime=01:00:00
+#PBS -N output
+#PBS -j oe
+
+# 환경 모듈 로드
+module load cuda11.2/toolkit/11.2.0
+
+# 실행 파일의 전체 경로
+EXECUTABLE_PATH="/home/br-gkim/project/Individual-Project/optimised/mega-stream"
+
+# 로그 파일 경로 동적 설정
+OUTPUT_LOG="/home/br-gkim/project/Individual-Project/optimised/output/output-${PBS_JOBID}.log"
+ERROR_LOG="/home/br-gkim/project/Individual-Project/optimised/output/error-${PBS_JOBID}.log"
+
+# 실행 파일 실행 및 로그 파일 작성
+$EXECUTABLE_PATH >$OUTPUT_LOG 2>$ERROR_LOG
+
+
+
+

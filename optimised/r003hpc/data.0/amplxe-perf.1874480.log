@@ -1,0 +1,231 @@
+threads_spec: cpu
+Using CPUID GenuineIntel-6-55-7
+DEBUGINFOD_URLS=
+Compression enabled, disabling build id collection at the end of the session.
+nr_threads: 40
+thread_masks[0]: 0x555557b9af20: maps mask[40]: 0
+thread_masks[0]: 0x555557b9af30: affinity mask[40]: 0
+thread_masks[1]: 0x555557b9af40: maps mask[40]: 1
+thread_masks[1]: 0x555557b9af50: affinity mask[40]: 1
+thread_masks[2]: 0x555557b9af60: maps mask[40]: 2
+thread_masks[2]: 0x555557b9af70: affinity mask[40]: 2
+thread_masks[3]: 0x555557b9af80: maps mask[40]: 3
+thread_masks[3]: 0x555557b9af90: affinity mask[40]: 3
+thread_masks[4]: 0x555557b9afa0: maps mask[40]: 4
+thread_masks[4]: 0x555557b9afb0: affinity mask[40]: 4
+thread_masks[5]: 0x555557b9afc0: maps mask[40]: 5
+thread_masks[5]: 0x555557b9afd0: affinity mask[40]: 5
+thread_masks[6]: 0x555557b9afe0: maps mask[40]: 6
+thread_masks[6]: 0x555557b9aff0: affinity mask[40]: 6
+thread_masks[7]: 0x555557b9b000: maps mask[40]: 7
+thread_masks[7]: 0x555557b9b010: affinity mask[40]: 7
+thread_masks[8]: 0x555557b9b020: maps mask[40]: 8
+thread_masks[8]: 0x555557b9b030: affinity mask[40]: 8
+thread_masks[9]: 0x555557b9b040: maps mask[40]: 9
+thread_masks[9]: 0x555557b9b050: affinity mask[40]: 9
+thread_masks[10]: 0x555557b9b060: maps mask[40]: 10
+thread_masks[10]: 0x555557b9b070: affinity mask[40]: 10
+thread_masks[11]: 0x555557b9b080: maps mask[40]: 11
+thread_masks[11]: 0x555557b9b090: affinity mask[40]: 11
+thread_masks[12]: 0x555557b9b0a0: maps mask[40]: 12
+thread_masks[12]: 0x555557b9b0b0: affinity mask[40]: 12
+thread_masks[13]: 0x555557b9b0c0: maps mask[40]: 13
+thread_masks[13]: 0x555557b9b0d0: affinity mask[40]: 13
+thread_masks[14]: 0x555557b9b0e0: maps mask[40]: 14
+thread_masks[14]: 0x555557b9b0f0: affinity mask[40]: 14
+thread_masks[15]: 0x555557b9b100: maps mask[40]: 15
+thread_masks[15]: 0x555557b9b110: affinity mask[40]: 15
+thread_masks[16]: 0x555557b9b120: maps mask[40]: 16
+thread_masks[16]: 0x555557b9b130: affinity mask[40]: 16
+thread_masks[17]: 0x555557b9b140: maps mask[40]: 17
+thread_masks[17]: 0x555557b9b150: affinity mask[40]: 17
+thread_masks[18]: 0x555557b9b160: maps mask[40]: 18
+thread_masks[18]: 0x555557b9b170: affinity mask[40]: 18
+thread_masks[19]: 0x555557b9b180: maps mask[40]: 19
+thread_masks[19]: 0x555557b9b190: affinity mask[40]: 19
+thread_masks[20]: 0x555557b9b1a0: maps mask[40]: 20
+thread_masks[20]: 0x555557b9b1b0: affinity mask[40]: 20
+thread_masks[21]: 0x555557b9b1c0: maps mask[40]: 21
+thread_masks[21]: 0x555557b9b1d0: affinity mask[40]: 21
+thread_masks[22]: 0x555557b9b1e0: maps mask[40]: 22
+thread_masks[22]: 0x555557b9b1f0: affinity mask[40]: 22
+thread_masks[23]: 0x555557b9b200: maps mask[40]: 23
+thread_masks[23]: 0x555557b9b210: affinity mask[40]: 23
+thread_masks[24]: 0x555557b9b220: maps mask[40]: 24
+thread_masks[24]: 0x555557b9b230: affinity mask[40]: 24
+thread_masks[25]: 0x555557b9b240: maps mask[40]: 25
+thread_masks[25]: 0x555557b9b250: affinity mask[40]: 25
+thread_masks[26]: 0x555557b9b260: maps mask[40]: 26
+thread_masks[26]: 0x555557b9b270: affinity mask[40]: 26
+thread_masks[27]: 0x555557b9b280: maps mask[40]: 27
+thread_masks[27]: 0x555557b9b290: affinity mask[40]: 27
+thread_masks[28]: 0x555557b9b2a0: maps mask[40]: 28
+thread_masks[28]: 0x555557b9b2b0: affinity mask[40]: 28
+thread_masks[29]: 0x555557b9b2c0: maps mask[40]: 29
+thread_masks[29]: 0x555557b9b2d0: affinity mask[40]: 29
+thread_masks[30]: 0x555557b9b2e0: maps mask[40]: 30
+thread_masks[30]: 0x555557b9b2f0: affinity mask[40]: 30
+thread_masks[31]: 0x555557b9b300: maps mask[40]: 31
+thread_masks[31]: 0x555557b9b310: affinity mask[40]: 31
+thread_masks[32]: 0x555557b9b320: maps mask[40]: 32
+thread_masks[32]: 0x555557b9b330: affinity mask[40]: 32
+thread_masks[33]: 0x555557b9b340: maps mask[40]: 33
+thread_masks[33]: 0x555557b9b350: affinity mask[40]: 33
+thread_masks[34]: 0x555557b9b360: maps mask[40]: 34
+thread_masks[34]: 0x555557b9b370: affinity mask[40]: 34
+thread_masks[35]: 0x555557b9b380: maps mask[40]: 35
+thread_masks[35]: 0x555557b9b390: affinity mask[40]: 35
+thread_masks[36]: 0x555557b9b3a0: maps mask[40]: 36
+thread_masks[36]: 0x555557b9b3b0: affinity mask[40]: 36
+thread_masks[37]: 0x555557b9b3c0: maps mask[40]: 37
+thread_masks[37]: 0x555557b9b3d0: affinity mask[40]: 37
+thread_masks[38]: 0x555557b9b3e0: maps mask[40]: 38
+thread_masks[38]: 0x555557b9b3f0: affinity mask[40]: 38
+thread_masks[39]: 0x555557b9b400: maps mask[40]: 39
+thread_masks[39]: 0x555557b9b410: affinity mask[40]: 39
+nr_cblocks: 0
+affinity: SYS
+mmap flush: 1
+comp level: 1
+Problems creating module maps, continuing anyway...
+WARNING: Kernel address maps (/proc/{kallsyms,modules}) are restricted,
+check /proc/sys/kernel/kptr_restrict and /proc/sys/kernel/perf_event_paranoid.
+
+Samples in kernel functions may not be resolved if a suitable vmlinux
+file is not found in the buildid cache or in the vmlinux path.
+
+Samples in kernel modules won't be resolved at all.
+
+If some relocation was applied (e.g. kexec) symbols may be misresolved
+even with a suitable vmlinux or kallsyms file.
+
+mmap size 528384B
+Couldn't record kernel reference relocation symbol
+Symbol resolution may be skewed if relocation was used (e.g. kexec).
+Check /proc/kallsyms permission or run as root.
+couldn't open /proc/1/task/1/maps
+couldn't open /proc/1917/task/1917/maps
+couldn't open /proc/1978/task/1978/maps
+couldn't open /proc/2118/task/2118/maps
+couldn't open /proc/2168/task/2168/maps
+couldn't open /proc/2518/task/2518/maps
+couldn't open /proc/2529/task/2529/maps
+couldn't open /proc/2530/task/2530/maps
+couldn't open /proc/2537/task/2537/maps
+couldn't open /proc/2563/task/2563/maps
+couldn't open /proc/2571/task/2571/maps
+couldn't open /proc/2579/task/2579/maps
+couldn't open /proc/2601/task/2601/maps
+couldn't open /proc/2606/task/2606/maps
+couldn't open /proc/2627/task/2627/maps
+couldn't open /proc/2693/task/2693/maps
+couldn't open /proc/2699/task/2699/maps
+couldn't open /proc/2704/task/2704/maps
+couldn't open /proc/2705/task/2705/maps
+couldn't open /proc/2706/task/2706/maps
+couldn't open /proc/2769/task/2769/maps
+couldn't open /proc/2770/task/2770/maps
+couldn't open /proc/2771/task/2771/maps
+couldn't open /proc/2773/task/2773/maps
+couldn't open /proc/2774/task/2774/maps
+couldn't open /proc/2816/task/2816/maps
+couldn't open /proc/3117/task/3117/maps
+couldn't open /proc/3119/task/3119/maps
+couldn't open /proc/3121/task/3121/maps
+couldn't open /proc/3122/task/3122/maps
+couldn't open /proc/3156/task/3156/maps
+couldn't open /proc/3249/task/3249/maps
+couldn't open /proc/3251/task/3251/maps
+couldn't open /proc/3435/task/3435/maps
+couldn't open /proc/4018/task/4018/maps
+couldn't open /proc/1859360/task/1859360/maps
+couldn't open /proc/1872149/task/1872149/maps
+couldn't open /proc/1872150/task/1872150/maps
+couldn't open /proc/1872173/task/1872173/maps
+couldn't open /proc/3662156/task/3662156/maps
+couldn't open /proc/3662176/task/3662176/maps
+threads[1874482]: started on cpu1
+threads[1874483]: started on cpu2
+threads[1874484]: started on cpu3
+threads[1874485]: started on cpu4
+threads[1874486]: started on cpu5
+threads[1874487]: started on cpu6
+threads[1874488]: started on cpu7
+threads[1874489]: started on cpu8
+threads[1874490]: started on cpu9
+threads[1874491]: started on cpu10
+threads[1874492]: started on cpu11
+threads[1874493]: started on cpu12
+threads[1874494]: started on cpu13
+threads[1874495]: started on cpu14
+threads[1874496]: started on cpu15
+threads[1874497]: started on cpu16
+threads[1874498]: started on cpu17
+threads[1874499]: started on cpu18
+threads[1874500]: started on cpu19
+threads[1874501]: started on cpu20
+threads[1874502]: started on cpu21
+threads[1874503]: started on cpu22
+threads[1874504]: started on cpu23
+threads[1874505]: started on cpu24
+threads[1874506]: started on cpu25
+threads[1874507]: started on cpu26
+threads[1874508]: started on cpu27
+threads[1874509]: started on cpu28
+threads[1874510]: started on cpu29
+threads[1874511]: started on cpu30
+threads[1874512]: started on cpu31
+threads[1874513]: started on cpu32
+threads[1874514]: started on cpu33
+threads[1874515]: started on cpu34
+threads[1874516]: started on cpu35
+threads[1874517]: started on cpu36
+threads[1874518]: started on cpu37
+threads[1874519]: started on cpu38
+threads[1874520]: started on cpu39
+threads[1874480]: started on cpu0
+
+1874481:perf-sync:ready:SYS=9060836665351766
+[ perf record: Woken up 42 times to write data ]
+threads[1874480]: samples=5, wakes=2, transferred=507600, compressed=81620
+threads[1874482]: samples=5, wakes=3, transferred=484064, compressed=74041
+threads[1874483]: samples=5, wakes=3, transferred=480544, compressed=74293
+threads[1874484]: samples=5, wakes=3, transferred=474336, compressed=73068
+threads[1874485]: samples=3, wakes=3, transferred=473200, compressed=73147
+threads[1874486]: samples=5, wakes=3, transferred=474688, compressed=73122
+threads[1874487]: samples=5, wakes=3, transferred=471984, compressed=72372
+threads[1874488]: samples=4, wakes=3, transferred=473248, compressed=72960
+threads[1874489]: samples=5, wakes=3, transferred=472528, compressed=72645
+threads[1874490]: samples=5, wakes=3, transferred=471936, compressed=72357
+threads[1874491]: samples=5, wakes=3, transferred=471536, compressed=72443
+threads[1874492]: samples=5, wakes=3, transferred=472800, compressed=72774
+threads[1874493]: samples=4, wakes=3, transferred=474992, compressed=73461
+threads[1874494]: samples=5, wakes=3, transferred=473920, compressed=72759
+threads[1874495]: samples=5, wakes=3, transferred=471776, compressed=72406
+threads[1874496]: samples=3, wakes=3, transferred=473136, compressed=72481
+threads[1874497]: samples=4, wakes=3, transferred=474736, compressed=73206
+threads[1874498]: samples=5, wakes=3, transferred=473888, compressed=73135
+threads[1874499]: samples=5, wakes=3, transferred=474544, compressed=73218
+threads[1874500]: samples=3, wakes=3, transferred=476480, compressed=73482
+threads[1874501]: samples=3, wakes=3, transferred=488976, compressed=79203
+threads[1874502]: samples=5, wakes=3, transferred=468560, compressed=72257
+threads[1874503]: samples=8, wakes=4, transferred=642464, compressed=99648
+threads[1874504]: samples=5, wakes=3, transferred=485664, compressed=77146
+threads[1874505]: samples=5, wakes=3, transferred=462944, compressed=71005
+threads[1874506]: samples=6, wakes=3, transferred=472992, compressed=74318
+threads[1874507]: samples=5, wakes=3, transferred=463968, compressed=71000
+threads[1874508]: samples=4, wakes=3, transferred=464560, compressed=71254
+threads[1874509]: samples=5, wakes=3, transferred=464672, compressed=71088
+threads[1874510]: samples=3, wakes=3, transferred=460672, compressed=70191
+threads[1874511]: samples=3, wakes=3, transferred=462032, compressed=70527
+threads[1874512]: samples=5, wakes=3, transferred=464880, compressed=71146
+threads[1874513]: samples=5, wakes=3, transferred=459680, compressed=70160
+threads[1874514]: samples=5, wakes=3, transferred=459744, compressed=70282
+threads[1874515]: samples=4, wakes=3, transferred=497816, compressed=75615
+threads[1874516]: samples=3, wakes=3, transferred=461312, compressed=70490
+threads[1874517]: samples=3, wakes=3, transferred=461824, compressed=70740
+threads[1874518]: samples=5, wakes=3, transferred=464352, compressed=71282
+threads[1874519]: samples=3, wakes=3, transferred=463680, compressed=71307
+threads[1874520]: samples=3, wakes=3, transferred=485544, compressed=74484
+failed to write feature HYBRID_TOPOLOGY
+[ perf record: Captured and wrote 3.115 MB /var/tmp/pbs.85622.gw4head/amplxe-tmp-br-gkim/amplxe-res-1874369-196386688643692420/data.0/system-wide.perf, compressed (original 18.194 MB, ratio is 6.485) ]

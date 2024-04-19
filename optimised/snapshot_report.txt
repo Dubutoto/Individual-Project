@@ -1,0 +1,270 @@
+Elapsed Time: 10.856s
+    IPC: 0.436
+     | The IPC may be too low. This could be caused by issues such as memory
+     | stalls, instruction starvation, branch misprediction or long latency
+     | instructions. Explore the other hardware-related metrics to identify what
+     | is causing low IPC.
+     |
+    SP GFLOPS: 0.000
+    DP GFLOPS: 52.798
+    x87 GFLOPS: 0.003
+    Average CPU Frequency: 2.042 GHz
+Logical Core Utilization: 82.4% (32.947 out of 40)
+    Physical Core Utilization: 82.4% (32.951 out of 40)
+Microarchitecture Usage: 28.6% of Pipeline Slots
+ | You code efficiency on this platform is too low.
+ | 
+ | Possible cause: memory stalls, instruction starvation, branch misprediction
+ | or long latency instructions.
+ | 
+ | Next steps: Run Microarchitecture Exploration analysis to identify the cause
+ | of the low microarchitecture usage efficiency.
+ |
+    Retiring: 28.6% of Pipeline Slots
+     | A high fraction of pipeline slots was utilized by useful work. While the
+     | goal is to make this metric value as big as possible, a high Retiring
+     | value for non-vectorized code could prompt you to consider code
+     | vectorization. Vectorization enables doing more computations without
+     | significantly increasing the number of instructions, thus improving the
+     | performance. Note that this metric value may be highlighted due to
+     | Microcode Sequencer (MS) issue, so the performance can be improved by
+     | avoiding using the MS.
+     |
+    Front-End Bound: 10.4% of Pipeline Slots
+    Bad Speculation: 0.4% of Pipeline Slots
+    Back-End Bound: 60.6% of Pipeline Slots
+     | A significant portion of pipeline slots are remaining empty. When
+     | operations take too long in the back-end, they introduce bubbles in the
+     | pipeline that ultimately cause fewer pipeline slots containing useful
+     | work to be retired per cycle than the machine is capable to support. This
+     | opportunity cost results in slower execution. Long-latency operations
+     | like divides and memory operations can cause this, as can too many
+     | operations being directed to a single execution port (for example, more
+     | multiply operations arriving in the back-end per cycle than the execution
+     | unit can support).
+     |
+        Memory Bound: 36.1% of Pipeline Slots
+         | The metric value is high. This can indicate that the significant
+         | fraction of execution pipeline slots could be stalled due to demand
+         | memory load and stores. Use Memory Access analysis to have the metric
+         | breakdown by memory hierarchy, memory bandwidth information,
+         | correlation by memory objects.
+         |
+            L1 Bound: 26.9% of Clockticks
+             | This metric shows how often machine was stalled without missing
+             | the L1 data cache. The L1 cache typically has the shortest
+             | latency. However, in certain cases like loads blocked on older
+             | stores, a load might suffer a high latency even though it is
+             | being satisfied by the L1. Note that this metric value may be
+             | highlighted due to DTLB Overhead or Cycles of 1 Port Utilized
+             | issues.
+             |
+                DTLB Overhead: 100.0% of Clockticks
+                 | Issue: A significant portion of cycles is being spent
+                 | handling first-level data TLB misses.
+                 | 
+                 | Tips:
+                 | 
+                 | 1.  As with ordinary data caching, focus on improving data
+                 | locality and reducing the working-set size to minimize the
+                 | DTLB overhead.
+                 | 
+                 | 2. Consider using profile-guided optimization (PGO) to
+                 | collocate frequently-used data on the same page.
+                 | 
+                 | 3. Try using larger page sizes for large amounts of
+                 | frequently-used data.
+                 |
+                    Load STLB Hit: 100.0% of Clockticks
+                     | In significant fraction of cycles the (first level) DTLB
+                     | was missed by load accesses, that later on hit in second-
+                     | level TLB (STLB).
+                     |
+                    Load STLB Miss: 0.0% of Clockticks
+                Loads Blocked by Store Forwarding: 0.0% of Clockticks
+                Lock Latency: 0.0% of Clockticks
+                 | A significant fraction of CPU cycles spent handling cache
+                 | misses due to lock operations. Due to the microarchitecture
+                 | handling of locks, they are classified as L1 Bound regardless
+                 | of what memory source satisfied them. Note that this metric
+                 | value may be highlighted due to Store Latency issue.
+                 |
+                Split Loads: 1.0% of Clockticks
+                4K Aliasing: 15.0% of Clockticks
+                FB Full: 100.0% of Clockticks
+                 | This metric does a rough estimation of how often L1D Fill
+                 | Buffer unavailability limited additional L1D miss memory
+                 | access requests to proceed. The higher the metric value, the
+                 | deeper the memory hierarchy level the misses are satisfied
+                 | from. Often it hints on approaching bandwidth limits (to L2
+                 | cache, L3 cache or external memory). Avoid adding software
+                 | prefetches if indeed memory BW limited.
+                 |
+            L2 Bound: 0.0% of Clockticks
+            L3 Bound: 5.2% of Clockticks
+             | This metric shows how often CPU was stalled on L3 cache, or
+             | contended with a sibling Core. Avoiding cache misses (L2
+             | misses/L3 hits) improves the latency and increases performance.
+             |
+                L3 Latency: 0.3% of Clockticks
+                 | This metric shows a fraction of cycles with demand load
+                 | accesses that hit the L3 cache under unloaded scenarios
+                 | (possibly L3 latency limited). Avoiding private cache misses
+                 | (i.e. L2 misses/L3 hits) will improve the latency, reduce
+                 | contention with sibling physical cores and increase
+                 | performance. Note the value of this node may overlap with its
+                 | siblings.
+                 |
+                SQ Full: 6.5% of Clockticks
+                 | This metric measures fraction of cycles where the Super Queue
+                 | (SQ) was full taking into account all request-types and both
+                 | hardware SMT threads. The Super Queue is used for requests to
+                 | access the L2 cache or to go out to the Uncore.
+                 |
+            DRAM Bound: 11.0% of Clockticks
+             | This metric shows how often CPU was stalled on the main memory
+             | (DRAM). Caching typically improves the latency and increases
+             | performance.
+             |
+                Memory Bandwidth: 28.8% of Clockticks
+                 | Issue: A significant fraction of cycles was stalled due to
+                 | approaching bandwidth limits of the main memory (DRAM).
+                 | 
+                 | Tips: Improve data accesses to reduce cacheline transfers
+                 | from/to memory using these possible techniques:
+                 |     - Consume all bytes of each cacheline before it is
+                 |       evicted (for example, reorder structure elements and
+                 |       split non-hot ones).
+                 |     - Merge compute-limited and bandwidth-limited loops.
+                 |     - Use NUMA optimizations on a multi-socket system.
+                 | 
+                 | Note: software prefetches do not help a bandwidth-limited
+                 | application.
+                 |
+                Memory Latency: 15.3% of Clockticks
+                 | Issue: A significant fraction of cycles was stalled due to
+                 | the latency of the main memory (DRAM).
+                 | 
+                 | Tips: Improve data accesses or interleave them with compute
+                 | using such possible techniques as data layout re-structuring
+                 | or software prefetches (through the compiler).
+                 |
+                    Local Memory: 0.9% of Clockticks
+                    Remote Memory: 1.4% of Clockticks
+                    Remote Cache: 0.3% of Clockticks
+            Store Bound: 2.7% of Clockticks
+                Store Latency: 17.9% of Clockticks
+                Split Stores: 0.4%
+                DTLB Store Overhead: 0.1% of Clockticks
+                    Store STLB Hit: 0.1% of Clockticks
+                    Store STLB Miss: 0.0% of Clockticks
+        Core Bound: 24.5% of Pipeline Slots
+         | This metric represents how much Core non-memory issues were of a
+         | bottleneck. Shortage in hardware compute resources, or dependencies
+         | software's instructions are both categorized under Core Bound. Hence
+         | it may indicate the machine ran out of an OOO resources, certain
+         | execution units are overloaded or dependencies in program's data- or
+         | instruction- flow are limiting the performance (e.g. FP-chained long-
+         | latency arithmetic operations).
+         |
+Memory Bound: 36.1% of Pipeline Slots
+ | The metric value is high. This can indicate that the significant fraction of
+ | execution pipeline slots could be stalled due to demand memory load and
+ | stores. Use Memory Access analysis to have the metric breakdown by memory
+ | hierarchy, memory bandwidth information, correlation by memory objects.
+ |
+    Cache Bound: 32.0% of Clockticks
+     | A significant proportion of cycles are being spent on data fetches from
+     | caches. Check Memory Access analysis to see if accesses to L2 or L3
+     | caches are problematic and consider applying the same performance tuning
+     | as you would for a cache-missing workload. This may include reducing the
+     | data working set size, improving data access locality, blocking or
+     | partitioning the working set to fit in the lower cache levels, or
+     | exploiting hardware prefetchers. Consider using software prefetchers, but
+     | note that they can interfere with normal loads, increase latency, and
+     | increase pressure on the memory system. This metric includes coherence
+     | penalties for shared data. Check Microarchitecture Exploration analysis
+     | to see if contested accesses or data sharing are indicated as likely
+     | issues.
+     |
+    DRAM Bound: 11.0% of Clockticks
+     | The metric value is high. This indicates that a significant fraction of
+     | cycles could be stalled on the main memory (DRAM) because of demand loads
+     | or stores.
+     |
+     | The code is memory bandwidth bound, which means that there are a
+     | significant fraction of cycles during which the bandwidth limits of the
+     | main memory are being reached and the code could stall. Review the
+     | Bandwidth Utilization Histogram to estimate the scale of the issue.
+     | Improve data accesses to reduce cacheline transfers from/to memory using
+     | these possible techniques: 1) consume all bytes of each cacheline before
+     | it is evicted (for example, reorder structure elements and split non-hot
+     | ones); 2) merge compute-limited and bandwidth-limited loops; 3) use NUMA
+     | optimizations on a multi-socket system.
+     |
+     | The code is latency bound, which means that there are a significant
+     | fraction of cycles during which the code could be stalled due to main
+     | memory latency. Consider optimizing data layout or using software
+     | prefetches through the compiler to improve cache reuse and to reduce the
+     | data fetched from the main memory.
+     |
+    NUMA: % of Remote Accesses: 58.8%
+     | A significant amount of DRAM loads were serviced from remote DRAM.
+     | Wherever possible, try to consistently use data on the same core, or at
+     | least the same package, as it was allocated on.
+     |
+Vectorization: 100.0% of Packed FP Operations
+    Instruction Mix
+        SP FLOPs: 0.0% of uOps
+            Packed: 0.0% from SP FP
+                128-bit: 0.0% from SP FP
+                256-bit: 0.0% from SP FP
+                512-bit: 0.0% from SP FP
+            Scalar: 100.0% from SP FP
+             | This code has floating point operations and is not vectorized.
+             | Consider either recompiling the code with optimization options
+             | that allow vectorization or using Intel Advisor to vectorize the
+             | loops.
+             |
+        DP FLOPs: 8.6% of uOps
+            Packed: 100.0% from DP FP
+                128-bit: 0.0% from DP FP
+                256-bit: 0.0% from DP FP
+                512-bit: 100.0% from DP FP
+            Scalar: 0.0% from DP FP
+        x87 FLOPs: 0.0% of uOps
+        Non-FP: 91.4% of uOps
+    FP Arith/Mem Rd Instr. Ratio: 0.927
+    FP Arith/Mem Wr Instr. Ratio: 2.605
+Collection and Platform Info
+    Application Command Line: ./mega-stream 
+    Operating System: 4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+    Computer Name: volta-001
+    Result Size: 3.9 MB 
+    Collection start time: 15:38:51 19/04/2024 UTC
+    Collection stop time: 15:39:02 19/04/2024 UTC
+    Collector Type: Driverless Perf per-process counting
+    CPU
+        Name: Intel(R) Xeon(R) Processor code named Cascadelake
+        Frequency: 2.095 GHz
+        Logical CPU Count: 40
+        LLC size: 28.8 MB 
+        Cache Allocation Technology
+            Level 2 capability: not detected
+            Level 3 capability: available
+
+Recommendations:
+    Hotspots: Start with Hotspots analysis to understand the efficiency of your algorithm.
+     | Use Hotspots analysis to identify the most time consuming functions.
+     | Drill down to see the time spent on every line of code.
+    Microarchitecture Exploration: There is low microarchitecture usage (28.6%) of available hardware resources.
+     | Run Microarchitecture Exploration analysis to analyze CPU
+     | microarchitecture bottlenecks that can affect application performance.
+    Memory Access: The Memory Bound metric is high  (36.1%). A significant fraction of execution pipeline slots could be stalled due to demand memory load and stores.
+     | Use Memory Access analysis to measure metrics that can identify memory
+     | access issues.
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.

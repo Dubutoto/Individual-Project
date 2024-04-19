@@ -1,0 +1,46 @@
+Hierarchy Level	Metric Name	Metric Value
+0	Elapsed Time	15.213448
+1	CPU Time	373.630000
+2	Effective Time	365.199408
+2	Spin Time	3.999165
+3	Imbalance or Serial Spinning	2.106729
+3	Lock Contention	0.446685
+3	Other	1.445751
+2	Overhead Time	4.431427
+3	Creation	0.744856
+3	Scheduling	3.686571
+3	Reduction	0.0
+3	Atomics	0.0
+3	Other	0.0
+1	Total Thread Count	40
+1	Paused Time	0.0
+0	Top Hotspots	
+0	Function	Module	CPU Time	% of CPU Time(%)
+0	kernel_sycl(sycl::_V1::queue*, int, int, int, int, int, int, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*, sycl::_V1::buffer<double, (int)1, sycl::_V1::detail::aligned_allocator<double>, void>*)::{lambda(sycl::_V1::handler&)#1}::operator()(sycl::_V1::handler&) const::{lambda(sycl::_V1::id<(int)1>)#1}::operator()	7f029ac54f3762d7	331.627870	88.8
+0	__ocl_svml_z0_idiv16	__ocl_svml_z0.so	12.780385	3.4
+0	main::{lambda(sycl::_V1::handler&)#1}::operator()(sycl::_V1::handler&) const::{lambda(sycl::_V1::id<(int)3>)#1}::operator()	7f029ac54f3762d7	9.013955	2.4
+0	_INTERNAL338ec324::tbb::detail::d0::machine_pause	libtbb.so.12	3.089392	0.8
+0	[TBB Scheduler Internals]	libtbb.so.12	1.916782	0.5
+0	[Others]	N/A	15.201616	4.1
+0	Top Tasks	
+0	Task Type	Task Time	Task Count	Average Task Time
+0	tbb_parallel_for	368.068173	40125	0.009173
+0	tbb_custom	12.795925	2544	0.005030
+0	Effective CPU Utilization	61.7
+1	Average Effective CPU Utilization	24.699 out of 40
+0	Collection and Platform Info	
+1	Application Command Line	./mega-stream 
+1	Operating System	4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+1	Computer Name	volta-001
+1	Result Size	38975392
+1	Collection start time	15:39:23 19/04/2024 UTC
+1	Collection stop time	15:39:38 19/04/2024 UTC
+1	Collector Type	Driverless Perf per-process counting,User-mode sampling and tracing
+1	CPU	
+2	Name	Intel(R) Xeon(R) Processor code named Cascadelake
+2	Frequency	2095075013
+2	Logical CPU Count	40
+2	LLC size	28835840
+2	Cache Allocation Technology	
+3	Level 2 capability	not detected
+3	Level 3 capability	available

@@ -1,0 +1,99 @@
+Using CPUID GenuineIntel-6-55-7
+Warning:
+UNC_M_CAS_COUNT.RD[UNIT0] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.RD[UNIT1] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.RD[UNIT2] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.RD[UNIT3] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.RD[UNIT4] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.RD[UNIT5] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.WR[UNIT0] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.WR[UNIT1] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.WR[UNIT2] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.WR[UNIT3] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.WR[UNIT4] event is not supported by the kernel.
+Warning:
+UNC_M_CAS_COUNT.WR[UNIT5] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_CLEAN[UNIT0] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_CLEAN[UNIT1] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_CLEAN[UNIT2] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_CLEAN[UNIT3] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_CLEAN[UNIT4] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_CLEAN[UNIT5] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_DIRTY[UNIT0] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_DIRTY[UNIT1] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_DIRTY[UNIT2] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_DIRTY[UNIT3] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_DIRTY[UNIT4] event is not supported by the kernel.
+Warning:
+UNC_M_TAGCHK.MISS_DIRTY[UNIT5] event is not supported by the kernel.
+Warning:
+UNC_M2M_IMC_READS.TO_PMM[UNIT0] event is not supported by the kernel.
+Warning:
+UNC_M2M_IMC_READS.TO_PMM[UNIT1] event is not supported by the kernel.
+Warning:
+UNC_M2M_IMC_WRITES.TO_PMM[UNIT0] event is not supported by the kernel.
+Warning:
+UNC_M2M_IMC_WRITES.TO_PMM[UNIT1] event is not supported by the kernel.
+Warning:
+UNC_M2M_TAG_HIT.NM_RD_HIT_CLEAN[UNIT0] event is not supported by the kernel.
+Warning:
+UNC_M2M_TAG_HIT.NM_RD_HIT_CLEAN[UNIT1] event is not supported by the kernel.
+Warning:
+UNC_M2M_TAG_HIT.NM_RD_HIT_DIRTY[UNIT0] event is not supported by the kernel.
+Warning:
+UNC_M2M_TAG_HIT.NM_RD_HIT_DIRTY[UNIT1] event is not supported by the kernel.
+
+1873335:perf-sync:ready:SYS=9060596841647829
+failed to read counter UNC_M_CAS_COUNT.RD[UNIT0]
+failed to read counter UNC_M_CAS_COUNT.RD[UNIT1]
+failed to read counter UNC_M_CAS_COUNT.RD[UNIT2]
+failed to read counter UNC_M_CAS_COUNT.RD[UNIT3]
+failed to read counter UNC_M_CAS_COUNT.RD[UNIT4]
+failed to read counter UNC_M_CAS_COUNT.RD[UNIT5]
+failed to read counter UNC_M_CAS_COUNT.WR[UNIT0]
+failed to read counter UNC_M_CAS_COUNT.WR[UNIT1]
+failed to read counter UNC_M_CAS_COUNT.WR[UNIT2]
+failed to read counter UNC_M_CAS_COUNT.WR[UNIT3]
+failed to read counter UNC_M_CAS_COUNT.WR[UNIT4]
+failed to read counter UNC_M_CAS_COUNT.WR[UNIT5]
+failed to read counter UNC_M_TAGCHK.MISS_CLEAN[UNIT0]
+failed to read counter UNC_M_TAGCHK.MISS_CLEAN[UNIT1]
+failed to read counter UNC_M_TAGCHK.MISS_CLEAN[UNIT2]
+failed to read counter UNC_M_TAGCHK.MISS_CLEAN[UNIT3]
+failed to read counter UNC_M_TAGCHK.MISS_CLEAN[UNIT4]
+failed to read counter UNC_M_TAGCHK.MISS_CLEAN[UNIT5]
+failed to read counter UNC_M_TAGCHK.MISS_DIRTY[UNIT0]
+failed to read counter UNC_M_TAGCHK.MISS_DIRTY[UNIT1]
+failed to read counter UNC_M_TAGCHK.MISS_DIRTY[UNIT2]
+failed to read counter UNC_M_TAGCHK.MISS_DIRTY[UNIT3]
+failed to read counter UNC_M_TAGCHK.MISS_DIRTY[UNIT4]
+failed to read counter UNC_M_TAGCHK.MISS_DIRTY[UNIT5]
+failed to read counter UNC_M2M_IMC_READS.TO_PMM[UNIT0]
+failed to read counter UNC_M2M_IMC_READS.TO_PMM[UNIT1]
+failed to read counter UNC_M2M_IMC_WRITES.TO_PMM[UNIT0]
+failed to read counter UNC_M2M_IMC_WRITES.TO_PMM[UNIT1]
+failed to read counter UNC_M2M_TAG_HIT.NM_RD_HIT_CLEAN[UNIT0]
+failed to read counter UNC_M2M_TAG_HIT.NM_RD_HIT_CLEAN[UNIT1]
+failed to read counter UNC_M2M_TAG_HIT.NM_RD_HIT_DIRTY[UNIT0]
+failed to read counter UNC_M2M_TAG_HIT.NM_RD_HIT_DIRTY[UNIT1]
