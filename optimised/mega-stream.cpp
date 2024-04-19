@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
     sycl::buffer<double> buf_sum(Nj * Nk * Nl * Nm);
 
     //device selector
-    sycl::queue queue(sycl::cpu_selector_v);
+    sycl::queue queue(sycl::gpu_selector_v);
 
     queue.submit([&](sycl::handler& handler) {
     auto acc_q = buf_q.get_access<sycl::access::mode::write>(handler);

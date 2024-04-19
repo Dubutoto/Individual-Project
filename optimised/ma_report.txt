@@ -1,0 +1,81 @@
+Elapsed Time: 21.036s
+    CPU Time: 356.927s
+    Memory Bound: 35.7% of Pipeline Slots
+     | The metric value is high. This may indicate that a significant fraction
+     | of execution pipeline slots could be stalled due to demand memory load
+     | and stores. Explore the metric breakdown by memory hierarchy, memory
+     | bandwidth information, and correlation by memory objects.
+     |
+        L1 Bound: 26.6% of Clockticks
+         | This metric shows how often machine was stalled without missing the
+         | L1 data cache. The L1 cache typically has the shortest latency.
+         | However, in certain cases like loads blocked on older stores, a load
+         | might suffer a high latency even though it is being satisfied by the
+         | L1.
+         |
+        L2 Bound: 0.0% of Clockticks
+        L3 Bound: 5.6% of Clockticks
+         | This metric shows how often CPU was stalled on L3 cache, or contended
+         | with a sibling Core. Avoiding cache misses (L2 misses/L3 hits)
+         | improves the latency and increases performance.
+         |
+        DRAM Bound: 10.6% of Clockticks
+         | This metric shows how often CPU was stalled on the main memory
+         | (DRAM). Caching typically improves the latency and increases
+         | performance.
+         |
+            DRAM Bandwidth Bound: 1.0% of Elapsed Time
+        Store Bound: 2.6% of Clockticks
+        NUMA: % of Remote Accesses: 59.3%
+         | A significant amount of DRAM loads were serviced from remote DRAM.
+         | Wherever possible, try to consistently use data on the same core, or
+         | at least the same package, as it was allocated on.
+         |
+        UPI Utilization Bound: 44.1% of Elapsed Time
+         | The system spent much time heavily utilizing UPI bandwidth. Improve
+         | data accesses using NUMA optimizations on a multi-socket system.
+         |
+    Loads: 74,461,611,610
+    Stores: 38,713,760,337
+    LLC Miss Count: 0
+        Local Memory Access Count: 0
+        Remote Memory Access Count: 0
+        Remote Cache Access Count: 0
+    Average Latency (cycles): 16
+    Total Thread Count: 41
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain                  Platform Maximum  Observed Maximum  Average  % of Elapsed Time with High BW Utilization(%)
+--------------------------------  ----------------  ----------------  -------  ---------------------------------------------
+DRAM, GB/sec                      242                        166.300   60.417                                           0.0%
+DRAM Single-Package, GB/sec       121                        112.200   33.327                                           1.0%
+UPI Utilization Single-link, (%)  100                         88.400   37.563                                          44.1%
+
+Top Tasks
+Task Type         Task Time  Task Count  Average Task Time
+----------------  ---------  ----------  -----------------
+tbb_parallel_for   361.671s      40,193             0.009s
+tbb_custom          10.530s       2,801             0.004s
+Collection and Platform Info
+    Application Command Line: ./mega-stream 
+    Operating System: 4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+    Computer Name: volta-001
+    Result Size: 175.2 MB 
+    Collection start time: 18:31:03 19/04/2024 UTC
+    Collection stop time: 18:31:24 19/04/2024 UTC
+    Collector Type: Driverless Perf system-wide sampling
+    CPU
+        Name: Intel(R) Xeon(R) Processor code named Cascadelake
+        Frequency: 2.095 GHz
+        Logical CPU Count: 40
+        Max DRAM Single-Package Bandwidth: 121.000 GB/s
+        LLC size: 28.8 MB 
+        Cache Allocation Technology
+            Level 2 capability: not detected
+            Level 3 capability: available
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.

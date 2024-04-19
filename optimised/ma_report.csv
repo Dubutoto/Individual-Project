@@ -1,0 +1,47 @@
+Hierarchy Level	Metric Name	Metric Value
+0	Elapsed Time	21.036335
+1	CPU Time	356.927076
+1	Memory Bound	35.7
+2	L1 Bound	26.6
+2	L2 Bound	0.0
+2	L3 Bound	5.6
+2	DRAM Bound	10.6
+3	DRAM Bandwidth Bound	1.0
+2	Store Bound	2.6
+2	NUMA: % of Remote Accesses	59.3
+2	UPI Utilization Bound	44.1
+1	Loads	74461611610
+1	Stores	38713760337
+1	LLC Miss Count	0
+2	Local Memory Access Count	0
+2	Remote Memory Access Count	0
+2	Remote Cache Access Count	0
+1	Average Latency (cycles)	16.489154
+1	Total Thread Count	41
+1	Paused Time	0.0
+0	Bandwidth Utilization	
+0	Bandwidth Domain	Platform Maximum	Observed Maximum	Average	% of Elapsed Time with High BW Utilization(%)
+0	DRAM, GB/sec	242.000000	166.300000	60.416894	0.0
+0	DRAM Single-Package, GB/sec	121.000000	112.200000	33.326623	1.0
+0	UPI Utilization Single-link, (%)	100.000000	88.400000	37.562627	44.1
+0	Top Tasks	
+0	Task Type	Task Time	Task Count	Average Task Time
+0	tbb_parallel_for	361.670634	40193	0.008998
+0	tbb_custom	10.530141	2801	0.003759
+0	Collection and Platform Info	
+1	Application Command Line	./mega-stream 
+1	Operating System	4.18.0-193.28.1.el8_2.x86_64 Red Hat Enterprise Linux release 8.2 (Ootpa)
+1	Computer Name	volta-001
+1	Result Size	175213189
+1	Collection start time	18:31:03 19/04/2024 UTC
+1	Collection stop time	18:31:24 19/04/2024 UTC
+1	Collector Type	Driverless Perf system-wide sampling
+1	CPU	
+2	Name	Intel(R) Xeon(R) Processor code named Cascadelake
+2	Frequency	2095075017
+2	Logical CPU Count	40
+2	Max DRAM Single-Package Bandwidth	121000000000.000000
+2	LLC size	28835840
+2	Cache Allocation Technology	
+3	Level 2 capability	not detected
+3	Level 3 capability	available
