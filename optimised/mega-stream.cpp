@@ -34,7 +34,7 @@
 #include <cstring>
 #include <cassert>
 #include <chrono>
-#include <CL/sycl.hpp>
+#include <sycl/sycl.hpp>
 
 // Index functions for SYCL
 inline size_t IDX2(size_t i, size_t j, size_t ni) {
@@ -89,6 +89,7 @@ static_assert((VLEN > 0) && ((VLEN & (VLEN-1)) == 0), "VLEN must be a power of 2
 #define B_START 0.07
 #define C_START 0.08
 
+/*
 #ifdef __APPLE__
 void* aligned_alloc(size_t alignment, size_t size) {
     void* mem = nullptr; 
@@ -96,6 +97,7 @@ void* aligned_alloc(size_t alignment, size_t size) {
     return mem;
 }
 #endif 
+*/
 
 void kernel_sycl(
     sycl::queue* queue,
@@ -193,7 +195,7 @@ int main(int argc, char *argv[])
     sycl::buffer<double> buf_sum(Nj * Nk * Nl * Nm);
 
     //device selector
-    sycl::queue queue(sycl::gpu_selector_v);
+   sycl::queue queue(sycl::cpu_selector_v);
 
     queue.submit([&](sycl::handler& handler) {
     auto acc_q = buf_q.get_access<sycl::access::mode::write>(handler);

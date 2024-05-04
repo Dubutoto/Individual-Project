@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -q voltaq
-#PBS -l select=1:ncpus=36:ngpus=2
+#PBS -l select=1:ncpus=40:ngpus=1
 #PBS -l walltime=01:00:00
 #PBS -N output
 #PBS -j oe

@@ -19,7 +19,7 @@
 
 
 CC = icpx
-CFLAGS = -std=c++17 -O3 -fsycl -g
+CFLAGS = -std=c++17 -O3 -fsycl  -g 
 
 FTN = ifort
 FFLAGS = -O3

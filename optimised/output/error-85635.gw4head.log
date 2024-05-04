@@ -1,0 +1,2 @@
+terminate called after throwing an instance of 'sycl::_V1::runtime_error'
+  what():  No device of requested type 'info::device_type::gpu' available. Please check https://software.intel.com/content/www/us/en/develop/articles/intel-oneapi-dpcpp-system-requirements.html -1 (PI_ERROR_DEVICE_NOT_FOUND)
