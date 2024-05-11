@@ -18,17 +18,17 @@
 #
 
 
-CC = icpx
-CFLAGS = -std=c++17 -O3 -fsycl  -g 
+CC = icx
+CFLAGS = -std=c11 -O3 
 
 FTN = ifort
 FFLAGS = -O3
 
-OMP = 
+OMP = -qopenmp
 
 default: mega-stream
 
-mega-stream: mega-stream.cpp
+mega-stream: mega-stream.c
 	$(CC) $(CFLAGS) $(OPTIONS) $(OMP) $^ -o $@
 
 mega-stream-ftn: mega-stream.f90 alloc.o

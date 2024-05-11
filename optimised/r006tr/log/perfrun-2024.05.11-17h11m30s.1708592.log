@@ -1,0 +1,122 @@
+2 [23456247368576] INFO perfrun.launcher <> - Launcher main begin
+17 [23456247368576] INFO perfrun.launcher <> - MessageCatalogInit finished
+17 [23456247368576] INFO perfrun.launcher <> - Launcher instance created
+17 [23456247368576] INFO perfrun.launcher <> - argc = 7; cmdline = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/bin64/amplxe-runss --ui-output-format xml --ui-output-fd 7 --option-file /lustre/home/br-gkim/project/Individual-Project/optimised/r006tr/config/runss.options 
+88 [23456247368576] INFO perfrun.launcher <> - create msngr2::ICliToolContext
+88 [23456247368576] INFO perfrun.launcher <> - create file finder object
+88 [23456247368576] INFO perfrun.launcher <> - create a result directory: pattern = /lustre/home/br-gkim/project/Individual-Project/optimised/r006tr pid = 4294967295
+93 [23456247368576] INFO perfrun.sdk <> - checked that the directory /lustre/home/br-gkim/project/Individual-Project/optimised/r006tr is a local directory
+93 [23456247368576] INFO perfrun.sdk <> - the directory /lustre/home/br-gkim/project/Individual-Project/optimised/r006tr is located on a share or its FS ID is unknown 198183888
+93 [23456247368576] INFO perfrun.sdk <> - checked that the directory /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim is a local directory
+93 [23456247368576] INFO perfrun.sdk <> - the directory /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim is a local directory with FS type ID 1481003842
+94 [23456247368576] INFO perfrun.launcher <> - Create a local result directory /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518 due to the user result path /lustre/home/br-gkim/project/Individual-Project/optimised/r006tr is located on a share
+94 [23456247368576] INFO perfrun.launcher <> - create data directory = /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518/data.0
+94 [23456247368576] INFO perfrun.launcher <> - create data directory = /lustre/home/br-gkim/project/Individual-Project/optimised/r006tr/data.0
+95 [23456247368576] INFO perfrun.launcher <> - Creating the master collection flag
+214 [23456247368576] INFO perfrun.launcher <> - Done creating the master collection flag
+217 [23456127473408] INFO perfrun.launcher <> - plugin [remoteplug] was disabled because it doesn't support the given collection type.
+217 [23456127473408] INFO perfrun.sdk <> - Allocating TMU :/var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518/data.0/systemcollector-1708592-volta-001.sc
+217 [23456127473408] INFO perfrun.system <> - Tpss based collection
+218 [23456127473408] INFO perfrun.launcher <> - plugin [ptracecollector] was disabled because it doesn't support the given collection type.
+218 [23456127473408] INFO perfrun.launcher <> - plugin [gpu] was disabled because it doesn't support the given collection type.
+218 [23456127473408] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+218 [23456127473408] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+218 [23456127473408] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+218 [23456127473408] INFO perfrun.mrte <> - system-wide mode is 0
+218 [23456127473408] INFO perfrun.mrte <> - Getting  mrte profiling environment ...
+243 [23456127473408] INFO perfrun.mrte <> - INTEL_MRTE_DATA_DIR=/var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518/data.0
+243 [23456127473408] INFO perfrun.mrte <> - INTEL_MRTE_HOST_NAME=volta-001
+243 [23456127473408] INFO perfrun.mrte <> - JAVA_TOOL_OPTIONS=-agentlib:amplxe_tpssmrte_javaprof_1.0 -Dsun.boot.library.path=/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/runtime:/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/runtime
+243 [23456127473408] INFO perfrun.mrte <> - LD_LIBRARY_PATH=/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/runtime:/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/runtime:/lustre/home/br-gkim/intel/oneapi/tbb/2021.12/env/../lib/intel64/gcc4.8:/lustre/home/br-gkim/intel/oneapi/mpi/2021.12/opt/mpi/libfabric/lib:/lustre/home/br-gkim/intel/oneapi/mpi/2021.12/lib:/lustre/home/br-gkim/intel/oneapi/mkl/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/ippcp/2021.11/lib/:/lustre/home/br-gkim/intel/oneapi/ipp/2021.11/lib:/lustre/home/br-gkim/intel/oneapi/dpl/2022.5/lib:/lustre/home/br-gkim/intel/oneapi/dnnl/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/debugger/2024.1/opt/debugger/lib:/lustre/home/br-gkim/intel/oneapi/dal/2024.2/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/opt/oclfpga/host/linux64/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/opt/compiler/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/ccl/2021.12/lib/:/opt/gcc/8.1.0/snos/lib64:/home/br-gkim/intel/oneapi/compiler/2024.1/lib:/cm/shared/apps/cuda11.2/toolkit/11.2.0/compat:/cm/shared/apps/cuda11.2/toolkit/11.2.0/targets/x86_64-linux/lib:/opt/cray/pe/papi/6.0.0.7/lib64:/cm/shared/apps/pbspro/19.2.8.20200925072630/lib/
+243 [23456127473408] INFO perfrun.mrte <> - CORECLR_ENABLE_PROFILING=1
+243 [23456127473408] INFO perfrun.mrte <> - CORECLR_PROFILER={AA5E4821-E3B1-479c-B7FF-5AD047D22CED}
+243 [23456127473408] INFO perfrun.mrte <> - CORECLR_PROFILER_PATH=/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/libamplxe_samplingmrte_clrprof_1.0.so
+243 [23456127473408] INFO perfrun.mrte <> - INTEL_MRTE_PROFILER_MODE=mixed
+243 [23456127473408] INFO perfrun.mrte <> - Data directory: /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518/data.0
+243 [23456127473408] INFO perfrun.mrte <> - Mrte plugin is initialized
+243 [23456127473408] INFO perfrun.launcher <> - plugin [emon] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [cuscol] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [stdsrc] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [sep] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [vtsspp] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [perf] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [aoclprofile] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.tpss <> - initialize tpss controller
+243 [23456127473408] INFO perfrun.tpss <> - configure collection mode: value = cpu:counters:nostack
+243 [23456127473408] INFO perfrun.tpss <> - configure collection mode: value = cpu:stack
+243 [23456127473408] INFO perfrun.tpss <> - configure collection mode: value = threading:stack
+243 [23456127473408] INFO perfrun.tpss <> - configure collection mode: value = waiting:stack
+243 [23456127473408] INFO perfrun.tpss <> - configure collection mode: value = io:stack
+243 [23456127473408] INFO perfrun.tpss <> - default obj-size-min=1024
+243 [23456127473408] INFO perfrun.tpss <> - default hash-table-size=0
+243 [23456127473408] INFO perfrun.launcher <> - plugin [media] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [parallelfs] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [power] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [ipmwatch] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [os_counters] was disabled because it doesn't support the given collection type.
+243 [23456127473408] INFO perfrun.launcher <> - plugin [l0_metrics] was disabled because it doesn't support the given collection type.
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: LD_LIBRARY_PATH = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/runtime:/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/runtime:/lustre/home/br-gkim/intel/oneapi/tbb/2021.12/env/../lib/intel64/gcc4.8:/lustre/home/br-gkim/intel/oneapi/mpi/2021.12/opt/mpi/libfabric/lib:/lustre/home/br-gkim/intel/oneapi/mpi/2021.12/lib:/lustre/home/br-gkim/intel/oneapi/mkl/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/ippcp/2021.11/lib/:/lustre/home/br-gkim/intel/oneapi/ipp/2021.11/lib:/lustre/home/br-gkim/intel/oneapi/dpl/2022.5/lib:/lustre/home/br-gkim/intel/oneapi/dnnl/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/debugger/2024.1/opt/debugger/lib:/lustre/home/br-gkim/intel/oneapi/dal/2024.2/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/opt/oclfpga/host/linux64/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/opt/compiler/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/ccl/2021.12/lib/:/opt/gcc/8.1.0/snos/lib64:/home/br-gkim/intel/oneapi/compiler/2024.1/lib:/cm/shared/apps/cuda11.2/toolkit/11.2.0/compat:/cm/shared/apps/cuda11.2/toolkit/11.2.0/targets/x86_64-linux/lib:/opt/cray/pe/papi/6.0.0.7/lib64:/cm/shared/apps/pbspro/19.2.8.20200925072630/lib/
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: INTEL_LIBITTNOTIFY32 = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/runtime/libittnotify_collector.so
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: INTEL_LIBITTNOTIFY64 = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/runtime/libittnotify_collector.so
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: INTEL_ITTNOTIFY_GROUPS = 
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: INTEL_JIT_PROFILER32 = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/runtime/libittnotify_collector.so
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: INTEL_JIT_PROFILER64 = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/runtime/libittnotify_collector.so
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: OMP_TOOL_LIBRARIES = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/runtime/libittnotify_collector.so:/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/runtime/libittnotify_collector.so
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: ENABLE_JITPROFILING = 1
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: CL_CONFIG_USE_VTUNE = True
+243 [23456247368576] INFO perfrun.launcher <> - set environment variable: INTEL_MRTE_DATA_DIR = /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518/data.0
+244 [23456247368576] INFO perfrun.launcher <> - set environment variable: INTEL_MRTE_HOST_NAME = volta-001
+244 [23456247368576] INFO perfrun.launcher <> - set environment variable: JAVA_TOOL_OPTIONS = -agentlib:amplxe_tpssmrte_javaprof_1.0 -Dsun.boot.library.path=/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/runtime:/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/runtime
+244 [23456247368576] INFO perfrun.launcher <> - set environment variable: LD_LIBRARY_PATH = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/runtime:/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/runtime:/lustre/home/br-gkim/intel/oneapi/tbb/2021.12/env/../lib/intel64/gcc4.8:/lustre/home/br-gkim/intel/oneapi/mpi/2021.12/opt/mpi/libfabric/lib:/lustre/home/br-gkim/intel/oneapi/mpi/2021.12/lib:/lustre/home/br-gkim/intel/oneapi/mkl/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/ippcp/2021.11/lib/:/lustre/home/br-gkim/intel/oneapi/ipp/2021.11/lib:/lustre/home/br-gkim/intel/oneapi/dpl/2022.5/lib:/lustre/home/br-gkim/intel/oneapi/dnnl/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/debugger/2024.1/opt/debugger/lib:/lustre/home/br-gkim/intel/oneapi/dal/2024.2/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/opt/oclfpga/host/linux64/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/opt/compiler/lib:/lustre/home/br-gkim/intel/oneapi/compiler/2024.1/lib:/lustre/home/br-gkim/intel/oneapi/ccl/2021.12/lib/:/opt/gcc/8.1.0/snos/lib64:/home/br-gkim/intel/oneapi/compiler/2024.1/lib:/cm/shared/apps/cuda11.2/toolkit/11.2.0/compat:/cm/shared/apps/cuda11.2/toolkit/11.2.0/targets/x86_64-linux/lib:/opt/cray/pe/papi/6.0.0.7/lib64:/cm/shared/apps/pbspro/19.2.8.20200925072630/lib/
+244 [23456247368576] INFO perfrun.launcher <> - set environment variable: CORECLR_ENABLE_PROFILING = 1
+244 [23456247368576] INFO perfrun.launcher <> - set environment variable: CORECLR_PROFILER = {AA5E4821-E3B1-479c-B7FF-5AD047D22CED}
+244 [23456247368576] INFO perfrun.launcher <> - set environment variable: CORECLR_PROFILER_PATH = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/libamplxe_samplingmrte_clrprof_1.0.so
+244 [23456247368576] INFO perfrun.launcher <> - set environment variable: INTEL_MRTE_PROFILER_MODE = mixed
+244 [23456247368576] INFO perfrun.launcher <> - RpcServer: run RPC server to handle requests
+253 [23456247368576] INFO perfrun.launcher <> - Launcher: command line to start before modification = ./mega-stream
+253 [23456247368576] INFO perfrun.launcher <> - Launcher: command line to start after modification = /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/bin64/pin -error_file /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518/data.0/pinerr.tpsslog -detach_reattach -follow_execv -tool_load_option deepbind -t64 /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64/libtpsstool.so -t /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib32/libtpsstool.so -server_name tpss_ipc.1708592 -prd_dir /lustre/home/br-gkim/intel/oneapi/vtune/2024.1 -- ./mega-stream
+253 [23456247368576] INFO perfrun.launcher <> - ProcessCreator object was created
+254 [23456247368576] INFO perfrun.launcher <> - Launcher: the process was started in suspend mode
+257 [23456127473408] WARN perfrun.system <> - Could not do anything with /sys/kernel/debug/kvm: boost::filesystem::status: Permission denied [system:13]: "/sys/kernel/debug/kvm", at file: vcs/perfrun1/plugins/system/src/trace_writer.cpp:787
+257 [23456127473408] WARN perfrun.system <> - Folder "/var/run/libvirt/qemu/"doesn't exist, at file: vcs/perfrun1/plugins/system/src/trace_writer.cpp:800
+261 [23456127473408] INFO perfrun.sdk <> - runCmd: /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/bin64/sep -platform-info
+261 [23456127473408] INFO perfrun.sdk <> - runCmd started PID 1708632
+272 [23456127473408] WARN perfrun.sdk <> - SEP driver is not available, at file: vcs/perfrun1/plugins/pluginsdk/src/device_mapper.cpp:946
+272 [23456127473408] INFO perfrun.sdk <> - runCmd: /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/bin64/amplxe-perf stat --iostat=list
+273 [23456127473408] INFO perfrun.sdk <> - runCmd started PID 1708633
+277 [23456127473408] WARN perfrun.sdk <> - Device mapping through perf is not available on current kernel, at file: vcs/perfrun1/plugins/pluginsdk/src/device_mapper.cpp:1177
+279 [23456127473408] INFO perfrun.sdk <> - runCmd: /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/bin64/sep -platform-info
+280 [23456127473408] INFO perfrun.sdk <> - runCmd started PID 1708634
+290 [23456127473408] WARN perfrun.sdk <> - SEP driver is not available, at file: vcs/perfrun1/plugins/pluginsdk/src/device_mapper.cpp:946
+290 [23456127473408] INFO perfrun.sdk <> - runCmd: /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/bin64/amplxe-perf stat --iostat=list
+290 [23456127473408] INFO perfrun.sdk <> - runCmd started PID 1708635
+294 [23456127473408] WARN perfrun.sdk <> - Device mapping through perf is not available on current kernel, at file: vcs/perfrun1/plugins/pluginsdk/src/device_mapper.cpp:1177
+294 [23456127473408] WARN perfrun.sdk <> - Failed to find xl binary on any of the system paths: /bin, /sbin, /usr/bin, /usr/sbin., at file: vcs/perfrun1/sdk/src/utils.cpp:204
+294 [23456127473408] WARN perfrun.system <> - Could not start ContainerMapping collector, at file: vcs/perfrun1/plugins/system/src/controller.cpp:448
+374 [23456127473408] INFO perfrun.vdso <> - Helper runtool '/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/bin32/amplxe-runss -dump-vdso -r /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518 --tmp-dir /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim' returned 0
+473 [23456127473408] INFO perfrun.vdso <> - Helper runtool '/lustre/home/br-gkim/intel/oneapi/vtune/2024.1/bin64/amplxe-runss -dump-vdso -r /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518 --tmp-dir /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim' returned 0
+473 [23456127473408] INFO perfrun.itt <> - start itt controller for pid #1708631
+473 [23456127473408] INFO perfrun.tpss <> - start tpss controller for pid #1708631
+523 [23456247368576] INFO perfrun.launcher <> - Launcher: all plugins were started
+523 [23456247368576] INFO perfrun.launcher <> - DirectoryMonitor object was created
+523 [23456247368576] INFO perfrun.launcher <> - DirectoryMonitor: a callback was added
+523 [23456247368576] INFO perfrun.launcher <> - DirectoryMonitor was started with pingTime = 1000
+523 [23456247368576] INFO perfrun.launcher <> - DeadlineTimer is going to be constructed
+524 [23456247368576] INFO perfrun.launcher <> - DeadlineTimer: a callback was added
+576 [23456247368576] INFO perfrun.launcher <> - Launcher: resume the profiled application and  wait its termination or stop command
+18157 [23456247368576] INFO perfrun.launcher <> - Launcher: the profiled application was terminated  with exit code = 0
+18174 [23456127473408] INFO perfrun.itt <> - detach itt controller
+18174 [23456127473408] INFO perfrun.itt <> - detach itt controller done
+18174 [23456127473408] INFO perfrun.tpss <> - stop tpss controller
+18175 [23456127473408] INFO perfrun.sdk <> - De-allocating TMU: /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518/data.0/systemcollector-1708592-volta-001.sc
+18175 [23456127473408] INFO perfrun.system <> - closed the system trace file: /var/tmp/pbs.86108.gw4head/amplxe-tmp-br-gkim/amplxe-res-1708592-200379835262151518/data.0/systemcollector-1708592-volta-001.sc
+18175 [23456247368576] INFO perfrun.launcher <> - Launcher: all plugins were stopped.
+18175 [23456247368576] INFO perfrun.launcher <> - DeadlineTimer is going to be destroyed
+18175 [23456247368576] INFO perfrun.launcher <> - DeadlineTimer was destroyed
+18175 [23456247368576] INFO perfrun.launcher <> - DirectoryMonitor object was destroyed
+18175 [23456247368576] WARN perfrun.launcher <> - Stop command is ignored because it is received when collection is already stopped, at file: vcs/perfrun1/launcher/src/command_handler.cpp:226
+18901 [23456247368576] INFO perfrun.launcher <> - Application exit code: 0
+18901 [23456247368576] INFO perfrun.launcher <> - Exit code: 0

@@ -1,0 +1,1143 @@
+---> piPlatformsGet(
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b3c
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformsGet(
+	<unknown> : 2
+	<unknown> : 0x555555793620
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x555555793620[ 0x5555556f5a00 ... ]
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 135168
+	<unknown> : 4
+	<unknown> : 0x7fffffff7a9c
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7a08
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 48
+	<char * > : 0x5555557c10f0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7a08
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 48
+	<char * > : 0x5555557c0cb0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDevicesGet(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 4294967295
+	<unknown> : 0
+	<unknown> : 0
+	<unknown> : 0x7fffffff79dc
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0[ nullptr ]
+
+---> piDevicesGet(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 4294967295
+	<unknown> : 1
+	<unknown> : 0x555555793830
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x555555793830[ 0x5555556f7a68 ... ]
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2305
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7758
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2305
+	<unknown> : 58
+	<char * > : 0x55555579baa0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7758
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 48
+	<char * > : 0x5555557c10f0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x5555557b6088
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4162
+	<unknown> : 8
+	<unknown> : 0x5555557b6090
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555557b6090[ 0 ... ]
+
+---> piDeviceRetain(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7458
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 399
+	<char * > : 0x55555579a7b0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7458
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 399
+	<char * > : 0x555555703880
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x7fffffff7688
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4097
+	<unknown> : 4
+	<unknown> : 0x7fffffff7778
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4141
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff75d8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4141
+	<unknown> : 22
+	<char * > : 0x5555557b5680
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4139
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff75d8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4139
+	<unknown> : 31
+	<char * > : 0x5555557b5550
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x5555557b4868
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4162
+	<unknown> : 8
+	<unknown> : 0x5555557b4870
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555557b4870[ 0 ... ]
+
+---> piDeviceRetain(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7778
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 399
+	<char * > : 0x55555579a7b0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7778
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 399
+	<char * > : 0x555555703880
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 135168
+	<unknown> : 4
+	<unknown> : 0x7fffffff7a9c
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7a08
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 16
+	<char * > : 0x5555557be3e0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7a08
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 16
+	<char * > : 0x5555557be3e0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDevicesGet(
+	pi_platform : 0x555555798b40
+	<unknown> : 4294967295
+	<unknown> : 0
+	<unknown> : 0
+	<unknown> : 0x7fffffff79dc
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0[ nullptr ]
+
+---> piDevicesGet(
+	pi_platform : 0x555555798b40
+	<unknown> : 4294967295
+	<unknown> : 1
+	<unknown> : 0x5555557b58d0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555557b58d0[ 0x55555579ac18 ... ]
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2305
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7758
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2305
+	<unknown> : 17
+	<char * > : 0x5555557be3e0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7758
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 16
+	<char * > : 0x5555557be3e0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x5555556578c8
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4162
+	<unknown> : 8
+	<unknown> : 0x5555556578d0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555556578d0[ 0 ... ]
+
+---> piDeviceRetain(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7458
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 866
+	<char * > : 0x5555557cb9a0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7458
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 866
+	<char * > : 0x5555557cbd10
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x7fffffff7688
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4097
+	<unknown> : 4
+	<unknown> : 0x7fffffff7778
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4141
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff75d8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4141
+	<unknown> : 22
+	<char * > : 0x5555557cc1b0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4139
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff75d8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4139
+	<unknown> : 42
+	<char * > : 0x55555579c090
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x555555656738
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4162
+	<unknown> : 8
+	<unknown> : 0x555555656740
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x555555656740[ 0 ... ]
+
+---> piDeviceRetain(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7778
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 866
+	<char * > : 0x5555557cb9a0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7778
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 866
+	<char * > : 0x5555557cbd10
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7c18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 48
+	<char * > : 0x5555557b4810
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDevicesGet(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 4294967295
+	<unknown> : 0
+	<unknown> : 0
+	<unknown> : 0x7fffffff7b7c
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0[ nullptr ]
+
+---> piDevicesGet(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 4294967295
+	<unknown> : 1
+	<unknown> : 0x5555557cc410
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555557cc410[ 0x5555556f7a68 ... ]
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2305
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff78f8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2305
+	<unknown> : 58
+	<char * > : 0x5555557c1de0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff78f8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x5555556f5a00
+	<unknown> : 2306
+	<unknown> : 48
+	<char * > : 0x5555557b4810
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x5555556fd518
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4162
+	<unknown> : 8
+	<unknown> : 0x5555556fd520
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555556fd520[ 0 ... ]
+
+---> piDeviceRetain(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff75f8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 399
+	<char * > : 0x5555557bd8a0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff75f8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 399
+	<char * > : 0x55555579a7b0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x7fffffff7828
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4097
+	<unknown> : 4
+	<unknown> : 0x7fffffff7918
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4141
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7778
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4141
+	<unknown> : 22
+	<char * > : 0x5555557cc1d0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4139
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7778
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4139
+	<unknown> : 31
+	<char * > : 0x5555557cd7b0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x5555557cc488
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4162
+	<unknown> : 8
+	<unknown> : 0x5555557cc490
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555557cc490[ 0 ... ]
+
+---> piDeviceRetain(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7918
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 399
+	<char * > : 0x5555557bd8a0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7918
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4144
+	<unknown> : 399
+	<char * > : 0x55555579a7b0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+[opencl:---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x7fffffff7c58
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+acc:0] ---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4143
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4143
+	<unknown> : 12
+	<char * > : 0x5555557ccaa0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4139
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4139
+	<unknown> : 31
+	<char * > : 0x5555557cd7b0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4140
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4140
+	<unknown> : 21
+	<char * > : 0x5555557ccaa0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4141
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x5555556f7a68
+	<unknown> : 4141
+	<unknown> : 22
+	<char * > : 0x5555557ccaa0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+Intel(R) FPGA Emulation Platform for OpenCL(TM), Intel(R) FPGA Emulation Device OpenCL 1.2  [2024.17.3.0.08_160000]
+---> piDeviceRelease(
+	<unknown> : 0x5555556f7a68
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7c18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 16
+	<char * > : 0x5555557b58d0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDevicesGet(
+	pi_platform : 0x555555798b40
+	<unknown> : 4294967295
+	<unknown> : 0
+	<unknown> : 0
+	<unknown> : 0x7fffffff7b7c
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0[ nullptr ]
+
+---> piDevicesGet(
+	pi_platform : 0x555555798b40
+	<unknown> : 4294967295
+	<unknown> : 1
+	<unknown> : 0x5555557cc1d0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555557cc1d0[ 0x55555579ac18 ... ]
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2305
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff78f8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2305
+	<unknown> : 17
+	<char * > : 0x5555557b58d0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff78f8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piPlatformGetInfo(
+	pi_platform : 0x555555798b40
+	<unknown> : 2306
+	<unknown> : 16
+	<char * > : 0x5555557b58d0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x5555557cc518
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4162
+	<unknown> : 8
+	<unknown> : 0x5555557cc520
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555557cc520[ 0 ... ]
+
+---> piDeviceRetain(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff75f8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 866
+	<char * > : 0x5555557cb9a0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff75f8
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 866
+	<char * > : 0x5555557cbd10
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x7fffffff7828
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4097
+	<unknown> : 4
+	<unknown> : 0x7fffffff7918
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4141
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7778
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4141
+	<unknown> : 22
+	<char * > : 0x5555557b58d0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4139
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7778
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4139
+	<unknown> : 42
+	<char * > : 0x5555557c0cb0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x5555557cc5a8
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4162
+	<unknown> : 8
+	<unknown> : 0x5555557cc5b0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+	[out]<unknown> ** : 0x5555557cc5b0[ 0 ... ]
+
+---> piDeviceRetain(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7918
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 866
+	<char * > : 0x5555557cb9a0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7918
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4144
+	<unknown> : 866
+	<char * > : 0x5555557cbd10
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceRelease(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+[opencl:---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4096
+	<unknown> : 8
+	<unknown> : 0x7fffffff7c58
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+cpu:1] ---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4143
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4143
+	<unknown> : 21
+	<char * > : 0x5555557ccaa0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4139
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4139
+	<unknown> : 42
+	<char * > : 0x5555557cc340
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4140
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4140
+	<unknown> : 21
+	<char * > : 0x5555557ccaa0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4141
+	<unknown> : 0
+	<nullptr>
+	<unknown> : 0x7fffffff7b18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piDeviceGetInfo(
+	<unknown> : 0x55555579ac18
+	<unknown> : 4141
+	<unknown> : 22
+	<char * > : 0x5555557ccaa0
+	<nullptr>
+) ---> 	pi_result : PI_SUCCESS
+
+Intel(R) OpenCL, Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz OpenCL 3.0 (Build 0) [2024.17.3.0.08_160000]
+---> piDeviceRelease(
+	<unknown> : 0x55555579ac18
+) ---> 	pi_result : PI_SUCCESS
+
+---> piTearDown(
+	<unknown> : 0x555555584de0
+) ---> 	pi_result : PI_SUCCESS
+
+---> piTearDown(
+	<unknown> : 0x555555587850
+) ---> 	pi_result : PI_SUCCESS
+

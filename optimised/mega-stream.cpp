@@ -99,6 +99,9 @@ void* aligned_alloc(size_t alignment, size_t size) {
 #endif 
 */
 
+ //device selector
+   sycl::queue queue(sycl::cpu_selector_v);
+
 void kernel_sycl(
     sycl::queue* queue,
     const int Ng, const int Ni, const int Nj, const int Nk, const int Nl, const int Nm,
@@ -194,8 +197,7 @@ int main(int argc, char *argv[])
 
     sycl::buffer<double> buf_sum(Nj * Nk * Nl * Nm);
 
-    //device selector
-   sycl::queue queue(sycl::cpu_selector_v);
+   
 
     queue.submit([&](sycl::handler& handler) {
     auto acc_q = buf_q.get_access<sycl::access::mode::write>(handler);
