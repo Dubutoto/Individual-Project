@@ -1,0 +1,3 @@
+124 [23456127473408] INFO mrtehelpers.mrteenv <> - Product libs directory: /lustre/home/br-gkim/intel/oneapi/vtune/2024.1/lib64
+124 [23456127473408] INFO mrtehelpers.mrteenv <> - File mask: amplxe_samplingmrte_clrprof*
+139 [23456127473408] INFO mrtehelpers.mrteenv <> - File name: libamplxe_samplingmrte_clrprof_1.0.so
