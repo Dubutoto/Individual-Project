@@ -1,8 +1,14 @@
 # Exploring HPC algorithms in SYCL
  This project would explore how we could make interesting and challenging parallel algorithms, such as transport sweeps, to the latest heterogeneous parallel programming APIs in SYCL. The project would explore how to map the parallelism the mega-stream/mega-sweep benchmark codes to SYCL, and analyse the performance of the code across different HPC-optimised CPU and GPU architectures.
- ![poster](https://github.com/user-attachments/assets/8542b3ae-a9e6-40ba-97c9-c4d79f30b0a1)
+<br>
+ **Geunyeong Kim.**<br> **Under the supervision and support of Dr. Tom Deakin.**
 
-
+---
+<div style="display: flex; align-items: flex-start;">
+   <img src="https://github.com/user-attachments/assets/8542b3ae-a9e6-40ba-97c9-c4d79f30b0a1" alt="poster" width="450"/>
+   <img src="https://github.com/user-attachments/assets/9649b449-3add-4af0-8b2e-5ba169f5e10b" width="450"/>
+ </div>
+ 
 # mega-stream
 
 The **mega-stream** mini-app initially aimed to test the theory that streaming many arrays (with different sizes) causes memory bandwidth limits not to be reached, resulting in latency becoming a dominant factor. We ran a kernel with a similar form to STREAM Triad, but with more than 3 input arrays. Additionally, we run a small reduction, requiring results of the Triad-style computation.
