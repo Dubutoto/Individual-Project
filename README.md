@@ -26,8 +26,13 @@ y(i,j,l,m) = 0.2*r(i,j,k,l,m) - y(i,j,l,m)
 z(i,k,l,m) = 0.2*r(i,j,k,l,m) - z(i,k,l,m)
 sum(j,k,l,m) = SUM(r(:,j,k,l,m))
 
-Building
-The benchmark should build with make, and by default uses the Intel compiler. This can be changed by specifying CC, for example make CC=cc. Additional options can be passed to the Makefile as make OPTIONS=.
+## Building
 
-Notes
-The Fortran version does not have any command line argument checking. A baseline and an optimised version are kept in this repository.
+The benchmark should build with `make`, and by default uses the Intel compiler. This can be changed by specifying `CC`, for example:
+
+```bash
+make CC=cc
+
+
+## Notes
+The Fortran version does not have any command-line argument checking. A baseline and an optimized version are kept in this repository.
